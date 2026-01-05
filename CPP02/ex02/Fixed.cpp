@@ -1,18 +1,18 @@
 #include "Fixed.hpp"
 
 //constructor
-Fixed::Fixed() {
+Fixed::Fixed() : rawBits(0){
 	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int i) {
-	rawBits = i * 256;
+	rawBits = i * (1 << fractionalBits);
 	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float f) {
 	std::cout << "Float constructor called" << std::endl;
-	rawBits = roundf(f * 256);
+	rawBits = roundf(f * (1 << fractionalBits));
 }
 
 Fixed::Fixed(const Fixed &other) : rawBits(other.rawBits){
@@ -26,7 +26,7 @@ Fixed &Fixed::operator=(const Fixed &other) {
 }
 
 Fixed::~Fixed() {
-	std::cout << "Deconstructor called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }
 
 // getter and setter
@@ -42,11 +42,11 @@ void Fixed::setRawBits(int const raw) {
 
 // convertions
 float Fixed::toFloat(void) const {
-	return (float)rawBits / 256;
+	return (float)rawBits / (1 << fractionalBits);
 }
 
 int Fixed::toInt(void) const {
-	return rawBits / 256;
+	return rawBits / (1 << fractionalBits);
 }
 
 // operator overloads
@@ -94,35 +94,64 @@ Fixed Fixed::operator-(const Fixed &other) const {
 Fixed Fixed::operator*(const Fixed &other) const {
 	Fixed result;
 	long tmp = (long)this->rawBits * (long)other.rawBits;
-	result.setRawBits(tmp >> fractoralBits);
+	result.setRawBits(tmp >> fractionalBits);
 	return result;
 }
 
 Fixed Fixed::operator/(const Fixed &other) const {
 	Fixed result;
-	long tmp = ((long)this->rawBits << fractoralBits) / other.rawBits;
-	result.setRawBits(tmp);
+	if (other.rawBits == 0) {
+		std::cout << "Error: division by zero" << std::endl;
+		result.setRawBits(0);
+		return result;
+	}
+	long tmp = ((long)this->rawBits << fractionalBits) / other.rawBits;
+	result.setRawBits((int)tmp);
 	return result;
 }
 
 Fixed &Fixed::operator++() {
-	rawBits += 2^fractoralBits;
+	rawBits += 1;
 	return *this;
 }
 
 Fixed Fixed::operator++(int) {
 	Fixed old(*this);
-	rawBits += 2^fractoralBits;
+	rawBits += 1;
 	return old;
 }
 
 Fixed &Fixed::operator--() {
-	rawBits -= 2^fractoralBits;
+	rawBits -= 1;
 	return *this;
 }
 
 Fixed Fixed::operator--(int) {
 	Fixed old(*this);
-	rawBits -= 2^fractoralBits;
+	rawBits -= 1;
 	return old;
+}
+
+Fixed &Fixed::min(Fixed& a, Fixed& b) {
+	if (a < b)
+		return a;
+	return b;
+}
+
+Fixed const &Fixed::min(const Fixed& a, const Fixed& b) {
+	if (a < b)
+		return a;
+	return b;
+}
+
+Fixed &Fixed::max(Fixed& a, Fixed& b) {
+	if (a > b)
+		return a;
+	return b;
+}
+
+Fixed const &Fixed::max(const Fixed& a, const Fixed& b) {
+	if (a > b)
+		return a;
+	return b;
 }
