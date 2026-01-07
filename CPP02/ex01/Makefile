@@ -1,4 +1,4 @@
-#Makefile for  Towards a more useful fixed-point number class
+#Makefile for Towards a more useful fixed-point number class
 
 # Project name
 NAME = Fixed

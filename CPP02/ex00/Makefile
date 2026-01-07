@@ -1,4 +1,4 @@
-#Makefile for   My First Class in Orthodox Canonical Form
+#Makefile for My First Class in Orthodox Canonical Form
 
 # Project name
 NAME = Fixed

@@ -1,4 +1,4 @@
-#Makefile for  Now we’re talking
+#Makefile for Now we’re talking
 
 # Project name
 NAME = Fixed
