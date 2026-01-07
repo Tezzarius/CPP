@@ -1,4 +1,4 @@
-#Makefile for Aaaaand... OPEN!
+#Makefile for Serena, my love!
 
 # Project name
 NAME = ClapTrap
