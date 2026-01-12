@@ -1,7 +1,7 @@
 #Makefile for Serena, my love!
 
 # Project name
-NAME = ClapTrap
+NAME = ScavTrap
 
 # Colours
 GREEN = \033[0;32m
@@ -13,8 +13,10 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
 
 # Source files
 SRC	=	main.cpp\
-		ClapTrap.cpp
-HEAD =	ClapTrap.hpp
+		ClapTrap.cpp\
+		ScavTrap.cpp
+HEAD =	ClapTrap.hpp\
+		ScavTrap.hpp
 
 OBJS = $(SRC:.cpp=.o)
 DEPS = $(SRC:.cpp=.d)
