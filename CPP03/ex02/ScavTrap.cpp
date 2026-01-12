@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap("") {
+ScavTrap::ScavTrap() : ClapTrap("Default") {
 	hitPoints = 100;
 	energyPoints = 50;
 	attackDamage = 20;
@@ -26,7 +26,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other) {
 	hitPoints = other.hitPoints;
 	energyPoints = other.energyPoints;
 	attackDamage = other.attackDamage;
-	std::cout << "Copy assignment operator called for ScavTrap " << name << std::endl;
+	std::cout << "ScavTrap " << name << " assigned" << std::endl;
 	return *this;
 }
 

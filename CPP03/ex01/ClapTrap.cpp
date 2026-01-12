@@ -1,7 +1,7 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap()
-	: name(""), hitPoints(10), energyPoints(10), attackDamage(0) {
+	: name("Default"), hitPoints(10), energyPoints(10), attackDamage(0) {
 	std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
@@ -20,7 +20,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other) {
 	hitPoints = other.hitPoints;
 	energyPoints = other.energyPoints;
 	attackDamage = other.attackDamage;
-	std::cout << "Copy assignment operator called for ClapTrap " << name << std::endl;
+	std::cout << "ClapTrap " << name << " assigned" << std::endl;
 	return *this;
 }
 
