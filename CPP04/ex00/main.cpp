@@ -15,6 +15,9 @@ int main() {
 	dog->makeSound();
 	std::cout << "The Animal make: ";
 	alpha->makeSound();
+	delete alpha;
+	delete dog;
+	delete cat;
 
 	std::cout << std::endl;
 
@@ -27,5 +30,8 @@ int main() {
 	std::cout << "The WrongAnimal make: ";
 	beta->makeSound();
 	
+	delete beta;
+	delete wrongCat;
+
 	return 0;
 }
