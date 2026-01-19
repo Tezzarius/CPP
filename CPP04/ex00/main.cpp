@@ -3,9 +3,9 @@
 #include "WrongCat.hpp"
 
 int main() {
-	const Animal* alpha = new Animal();
-	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
+	const Animal *alpha = new Animal();
+	const Animal *dog = new Dog();
+	const Animal *cat = new Cat();
 
 	std::cout << "Dog type: " << dog->getType() << std::endl;
 	std::cout << "Cat type: " << cat->getType() << std::endl;
@@ -21,8 +21,8 @@ int main() {
 
 	std::cout << std::endl;
 
-	const WrongAnimal* beta = new WrongAnimal();
-	const WrongAnimal* wrongCat = new WrongCat();
+	const WrongAnimal *beta = new WrongAnimal();
+	const WrongAnimal *wrongCat = new WrongCat();
 
 	std::cout << "WrongCat type: " << wrongCat->getType() << std::endl;
 	std::cout << "The WrongCat make: ";
