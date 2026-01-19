@@ -1,9 +1,24 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name) {
-	this->name = name;
-	this->is_armed = false;
+HumanB::HumanB(std::string name) : name(name), is_armed(false) {
 	std::cout << name << " is created" << std::endl;
+}
+
+HumanB::HumanB(const HumanB &other) {
+	name = other.name;
+	weapon = other.weapon;
+	is_armed = other.is_armed;
+	std::cout << name << " was copied" << std::endl;
+}
+
+HumanB &HumanB::operator=(const HumanB &other) {
+	if (this != &other) {
+		name = other.name;
+		weapon = other.weapon;
+		is_armed = other.is_armed;
+	}
+	std::cout << name << " was assigned" << std::endl;
+	return *this;
 }
 
 HumanB::~HumanB() {

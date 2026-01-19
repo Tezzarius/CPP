@@ -16,10 +16,12 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other) {
-	name = other.name;
-	hitPoints = other.hitPoints;
-	energyPoints = other.energyPoints;
-	attackDamage = other.attackDamage;
+	if (this != &other) {
+		name = other.name;
+		hitPoints = other.hitPoints;
+		energyPoints = other.energyPoints;
+		attackDamage = other.attackDamage;
+	}
 	std::cout << "ClapTrap " << name << " assigned" << std::endl;
 	return *this;
 }

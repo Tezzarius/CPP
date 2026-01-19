@@ -10,7 +10,9 @@ Cat::Cat(const Cat &other) : Animal(other) {
 }
 
 Cat &Cat::operator=(const Cat &other) {
-	Animal::operator=(other);
+	if (this != &other) {
+		Animal::operator=(other);
+	}
 	std::cout << "Cat was assigned" << std::endl;
 	return *this;
 }

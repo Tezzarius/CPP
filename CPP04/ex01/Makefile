@@ -17,12 +17,14 @@ SRC	=	main.cpp\
 		Cat.cpp\
 		Dog.cpp\
 		WrongAnimal.cpp\
-		WrongCat.cpp
+		WrongCat.cpp\
+		Brain.cpp
 HEAD =	Animal.hpp\
 		Cat.hpp\
 		Dog.hpp\
 		WrongAnimal.hpp\
-		WrongCat.hpp
+		WrongCat.hpp\
+		Brain.hpp
 
 OBJS = $(SRC:.cpp=.o)
 DEPS = $(SRC:.cpp=.d)

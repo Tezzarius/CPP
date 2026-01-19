@@ -19,8 +19,10 @@ DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(o
 }
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other) {
-	ClapTrap::operator=(other);
-	name = other.name;
+	if (this != &other) {
+		ClapTrap::operator=(other);
+		name = other.name;
+	}
 	std::cout << "DiamondTrap " << name << " assigned" << std::endl;
 	return *this;
 }

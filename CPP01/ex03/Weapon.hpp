@@ -10,7 +10,10 @@ private:
 public:
 	Weapon();
 	Weapon(const std::string &type);
+	Weapon(const Weapon &other);
+	Weapon &operator=(const Weapon &other);
 	~Weapon();
+
 	std::string const& getType();
 	void setType(const std::string &type);
 };

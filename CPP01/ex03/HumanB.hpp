@@ -10,7 +10,10 @@ class HumanB {
 		bool is_armed;
 	public:
 		HumanB(std::string name);
+		HumanB(const HumanB &other);
+		HumanB &operator=(const HumanB &other);
 		~HumanB();
+		
 		void setWeapon(Weapon &weapon);
 		void attack();
 };
