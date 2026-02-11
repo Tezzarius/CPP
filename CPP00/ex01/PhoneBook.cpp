@@ -16,15 +16,22 @@ int& PhoneBook::getIndex() {
 	return index;
 }
 
+int checkInput(std::string input) {
+	for (int i = 0; input[i]; i++)
+		if (!isalnum(input.at(i)))
+			return 1;
+	return 0;
+}
+
 std::string getInput(std::string str) {
 	std::string input;
 
 	std::cout << str << ": ";
 	while (1) {
 		std::getline(std::cin, input);
-		if (!input.empty())
+		if (!input.empty() && !checkInput(input)) 
 			break;
-		std::cout << str << " can't be empty. Try again: ";
+		std::cout << str << ": Wrong input. Try again: ";
 	}
 	return input;
 }
