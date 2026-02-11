@@ -10,24 +10,24 @@ class Form {
 		const int gradeToSign;
 		const int gradeToExecute;
 	public:
-		Form(std::string name, int gradeToSign, int gradeToExecute);
-		Form(const Form &other);
-		Form &operator=(const Form &other);
+		Form(std::string, int, int);
+		Form(const Form &);
+		Form &operator=(const Form &);
 		~Form();
 
-	const std::string getName() const;
-	bool getIsSigned() const;
-	int getGradeToSign() const;
-	int getGradeToExecute() const;
+		const std::string getName() const;
+		bool getIsSigned() const;
+		int getGradeToSign() const;
+		int getGradeToExecute() const;
 
-	class GradeTooHighException : public std::exception {
-		const char *what() const throw();
-	};
-	class GradeTooLowException : public std::exception {
-		const char *what() const throw();
-	};
+		class GradeTooHighException : public std::exception {
+			const char *what() const throw();
+		};
+		class GradeTooLowException : public std::exception {
+			const char *what() const throw();
+		};
 
-	void beSigned(Bureaucrat &b);
+		void beSigned(Bureaucrat &b);
 };
 
 std::ostream &operator<<(std::ostream &os, const Form &b);

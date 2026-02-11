@@ -12,9 +12,9 @@ class Bureaucrat {
 		const std::string name;
 		int grade;
 	public:
-		Bureaucrat(const std::string name, int grade);
-		Bureaucrat(const Bureaucrat &other);
-		Bureaucrat &operator=(const Bureaucrat &other);
+		Bureaucrat(const std::string, int);
+		Bureaucrat(const Bureaucrat &);
+		Bureaucrat &operator=(const Bureaucrat &);
 		~Bureaucrat();
 
 		const std::string getName() const;
@@ -30,9 +30,9 @@ class Bureaucrat {
 			const char *what() const throw();
 		};
 
-		void signForm(AForm &f);
+		void signForm(AForm &);
 };
 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &b);
+std::ostream &operator<<(std::ostream &, const Bureaucrat &);
 
 #endif

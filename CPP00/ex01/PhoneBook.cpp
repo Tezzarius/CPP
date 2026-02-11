@@ -1,4 +1,5 @@
 #include "PhoneBook.hpp"
+#include <cctype>
 
 PhoneBook::PhoneBook() {
 
@@ -18,7 +19,7 @@ int& PhoneBook::getIndex() {
 
 int checkInput(std::string input) {
 	for (int i = 0; input[i]; i++)
-		if (!isalnum(input.at(i)))
+		if (!std::isprint(input.at(i)))
 			return 1;
 	return 0;
 }
