@@ -1,17 +1,19 @@
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main() {
 	Bureaucrat *Ted = NULL;
 	Bureaucrat *Karl = NULL;
-	Bureaucrat *Test = NULL;
+	Bureaucrat *Hans = NULL;
+	Form alpha("alpha", 5, 2);
+	Form beta("beta", 10, 4);
 
 	try {
-		Test = new Bureaucrat("Test", 0);
+		Hans = new Bureaucrat("Hans", 0);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 	try {
-		Test = new Bureaucrat("Test", 160);
+		Hans = new Bureaucrat("Hans", 160);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
@@ -25,27 +27,42 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 	
-	if (Test)
-		std::cout << *Test << std::endl;
+	if (Hans)
+		std::cout << *Hans << std::endl;
 	if (Ted)
 		std::cout << *Ted << std::endl;
 	if (Karl)
 		std::cout << *Karl << std::endl;
 
 	if (Ted) {
+		std::cout << "Ted will be promoted by 2 grades." << std::endl;
+		Ted->incrementGrade();
+		Ted->incrementGrade();
+		std::cout << *Ted << std::endl;
 		try {
-			std::cout << "Ted will be promoted by 2 grades." << std::endl;
-			Ted->incrementGrade();
-			Ted->incrementGrade();
-			std::cout << *Ted << std::endl;
 			Ted->incrementGrade();
 			std::cout << *Ted << std::endl;
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
+		try {
+			Ted->signForm(alpha);
+			std::cout << alpha << std::endl;
+		} catch (std::exception &e) {
+			std::cout << e.what() << std::endl;
+		}
 	}
 
-	delete Test;
+	if (Karl) {
+		try {
+			Karl->signForm(beta);
+		} catch (std::exception &e) {
+			std::cout << e.what() << std::endl;
+		}
+		std::cout << beta << std::endl;
+	}
+
+	delete Hans;
 	delete Ted;
 	delete Karl;
 }

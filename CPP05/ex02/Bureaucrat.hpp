@@ -5,6 +5,8 @@
 # include <string>
 # include <exception>
 
+class AForm;
+
 class Bureaucrat {
 	private:
 		const std::string name;
@@ -27,6 +29,8 @@ class Bureaucrat {
 		class GradeTooLowException : public std::exception {
 			const char *what() const throw();
 		};
+
+		void signForm(AForm &f);
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &b);
