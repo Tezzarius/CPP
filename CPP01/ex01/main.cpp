@@ -11,7 +11,7 @@ static int ft_stoi(std::string str) {
 			neg = -neg;
 		i++;
 	}
-	for (i = i; str[i] >= '0' && str[i] <= '9'; i++) {
+	for (int i = 0; str[i] >= '0' && str[i] <= '9'; i++) {
 		dest *= 10;
 		dest += str[i] - '0';
 	}

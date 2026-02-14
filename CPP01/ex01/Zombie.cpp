@@ -31,5 +31,4 @@ void Zombie::announce() {
 
 void Zombie::setName(const std::string& name) {
 	this->name = name;
-	std::cout << name << " is created" << std::endl;
 }
