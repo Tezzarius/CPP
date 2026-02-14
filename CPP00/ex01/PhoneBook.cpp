@@ -30,6 +30,10 @@ std::string getInput(std::string str) {
 	std::cout << str << ": ";
 	while (1) {
 		std::getline(std::cin, input);
+		if (std::cin.eof()) {
+			std::cout << std::endl << "EOF detected. Exiting." << std::endl;
+			break;
+		}
 		if (!input.empty() && !checkInput(input)) 
 			break;
 		std::cout << str << ": Wrong input. Try again: ";

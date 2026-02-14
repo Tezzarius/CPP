@@ -51,7 +51,7 @@ void searchContact(PhoneBook &book) {
 			Contact con = book.getContacts(i - 1);
 			std::cout << "first name: " << con.getFirstName() << std::endl;
 			std::cout << "last name: " << con.getLastName() << std::endl;
-			std::cout << "nickname: " << con.getLastName() << std::endl;
+			std::cout << "nickname: " << con.getNickname() << std::endl;
 			std::cout << "phone number: " << con.getPhoneNumber() <<std::endl;
 			std::cout << "darkest secret: " << con.getDarkestSecret() << std::endl;
 			break;
