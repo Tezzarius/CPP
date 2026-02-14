@@ -5,19 +5,19 @@ int main()
 {
 	{
 		Weapon club = Weapon("crude spiked club");
-		HumanA alpha("Alpha", club);
-		alpha.attack();
+		HumanA bob("Bob", club);
+		bob.attack();
 		club.setType("some other type of club");
-		alpha.attack();
+		bob.attack();
 	}
 	{
 		Weapon club = Weapon("crude spiked club");
-		HumanB beta("Beta");
-		beta.attack();
-		beta.setWeapon(club);
-		beta.attack();
+		HumanB jim("Jim");
+		jim.attack();
+		jim.setWeapon(club);
+		jim.attack();
 		club.setType("some other type of club");
-		beta.attack();
+		jim.attack();
 	}
 	return 0;
 }
