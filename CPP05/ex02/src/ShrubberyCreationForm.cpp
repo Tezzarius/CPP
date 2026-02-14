@@ -40,6 +40,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 
 void printAsciiTree(std::ofstream &outfile) {
 	outfile
+	<< "ex02" << std::endl
 	<< "├── dep" << std::endl
 	<< "│    ├── AForm.d" << std::endl
 	<< "│    ├── Bureaucrat.d" << std::endl
