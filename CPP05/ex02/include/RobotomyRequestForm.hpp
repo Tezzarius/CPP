@@ -12,7 +12,7 @@ class RobotomyRequestForm : public AForm {
 
 		virtual void beSigned(Bureaucrat &);
 
-		void execute();
+		void execute(Bureaucrat const &executor) const;
 };
 
 #endif
