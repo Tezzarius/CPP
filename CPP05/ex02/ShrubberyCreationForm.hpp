@@ -9,6 +9,8 @@ class ShrubberyCreationForm : public AForm {
 		ShrubberyCreationForm(const ShrubberyCreationForm &);
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &);
 		virtual ~ShrubberyCreationForm();
+
+		void action();
 };
 
 #endif
