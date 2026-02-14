@@ -22,9 +22,21 @@ class Bureaucrat {
 		void decrementGrade();
 
 		class GradeTooHighException : public std::exception {
+			private:
+				std::string msg;
+			public:
+				GradeTooHighException(const std::string &name);
+				~GradeTooHighException() throw();
+
 			const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
+			private:
+				std::string msg;
+			public:
+				GradeTooLowException(const std::string &name);
+				~GradeTooLowException() throw();
+				
 			const char *what() const throw();
 		};
 };

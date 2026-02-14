@@ -9,7 +9,13 @@ RED = \033[0;31m
 
 # Compiler and flags
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -I include
+
+# Directories
+SRC_DIR = src
+OBJ_DIR = obj
+DEP_DIR = dep
 
 # Source files
 SRC	=	main.cpp\
@@ -18,14 +24,10 @@ SRC	=	main.cpp\
 		PresidentialPardonForm.cpp\
 		RobotomyRequestForm.cpp\
 		ShrubberyCreationForm.cpp
-HEAD =	Bureaucrat.hpp\
-		AForm.hpp\
-		PresidentialPardonForm.hpp\
-		RobotomyRequestForm.hpp\
-		ScrubberyCreationForm.hpp
 
-OBJS = $(SRC:.cpp=.o)
-DEPS = $(SRC:.cpp=.d)
+SRCS = $(addprefix $(SRC_DIR)/,$(SRC))
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+DEPS = $(SRCS:$(SRC_DIR)/%.cpp=$(DEP_DIR)/%.d)
 
 # Rules
 all: $(NAME)
@@ -34,8 +36,13 @@ $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)✅ $(NAME) Compiled successfully!"
 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(DEP_DIR)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -MT $@ -c $< -o $@
+
 clean:
-	@rm -rf $(OBJS) $(DEPS)
+	@rm -rf $(OBJ_DIR) $(DEP_DIR)
 	@echo "$(RED)🧹 Object and dependency files removed!"
 
 fclean: clean
