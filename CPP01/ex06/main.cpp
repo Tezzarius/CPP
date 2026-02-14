@@ -24,15 +24,12 @@ int main(int ac, char **av) {
 		case 0:
 			std::cout << "[ DEBUG ]" << std::endl;
 			harl.complain("DEBUG");
-			/*fall through*/
 		case 1:
 			std::cout << "[ INFO ]" << std::endl;
 			harl.complain("INFO");
-			/*fall through*/
 		case 2:
 			std::cout << "[ WARNING ]" << std::endl;
 			harl.complain("WARNING");
-			/*fall through*/
 		case 3:
 			std::cout << "[ ERROR ]" << std::endl;
 			harl.complain("ERROR");
