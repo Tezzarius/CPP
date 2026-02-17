@@ -43,6 +43,7 @@ class Bureaucrat {
 		};
 
 		void signForm(AForm &);
+		void executeForm(AForm const &form) const;
 };
 
 std::ostream &operator<<(std::ostream &, const Bureaucrat &);

@@ -54,7 +54,7 @@ int main() {
 	if (Stupidix) {
 		try {
 			Stupidix->signForm(Alpha);
-			Alpha.execute(*Stupidix);
+			Stupidix->executeForm(Alpha);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
@@ -63,7 +63,7 @@ int main() {
 	if (Miraculix) {
 		try {
 			Miraculix->signForm(Alpha);
-			Alpha.execute(*Miraculix);
+			Miraculix->executeForm(Alpha);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
@@ -74,7 +74,7 @@ int main() {
 	if (Stupidix) {
 		try {
 			Stupidix->signForm(Beta);
-			Beta.execute(*Stupidix);
+			Stupidix->executeForm(Beta);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
@@ -83,7 +83,7 @@ int main() {
 	if (Obelix) {
 		try {
 			Obelix->signForm(Beta);
-			Beta.execute(*Obelix);
+			Obelix->executeForm(Beta);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
@@ -94,7 +94,7 @@ int main() {
 	if (Stupidix) {
 		try {
 			Stupidix->signForm(Gamma);
-			Gamma.execute(*Stupidix);
+			Stupidix->executeForm(Gamma);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
@@ -104,7 +104,7 @@ int main() {
 		try {
 			Asterix->signForm(Gamma);
 			for (int i = 0; i < 10; i++)
-				Gamma.execute(*Asterix);
+				Asterix->executeForm(Gamma);
 		} catch (std::exception &e) {
 			std::cout <<e.what() << std::endl;
 		}

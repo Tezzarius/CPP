@@ -35,7 +35,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
 		return;
 	}
 	printAsciiTree(outfile);
-
 }
 
 void printAsciiTree(std::ofstream &outfile) {
