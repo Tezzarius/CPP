@@ -2,15 +2,25 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int main() {
+	Intern Dude;
 	Bureaucrat *Asterix = NULL;
 	Bureaucrat *Obelix = NULL;
 	Bureaucrat *Miraculix = NULL;
 	Bureaucrat *Stupidix = NULL;
-	PresidentialPardonForm Alpha("Alpha");
-	ShrubberyCreationForm Beta("Beta");
-	RobotomyRequestForm Gamma("Gamma");
+	AForm *Alpha = NULL;
+	AForm *Beta = NULL;
+	AForm *Gamma = NULL;
+
+	try {
+		Alpha = Dude.makeForm("presidentia pardon", "Alpha");
+		Beta = Dude.makeForm("shrubbery creation", "Beta");
+		Gamma = Dude.makeForm("robotomy request", "Gamma");
+	} catch (std::exception &e) {
+		std::cout << e.what() <<std::endl;
+	}
 
 	try {
 		Asterix = new Bureaucrat("Asterix", 40);
@@ -51,65 +61,72 @@ int main() {
 	
 	std::cout << std::endl;
 
-	if (Stupidix) {
+	if (Stupidix && Alpha) {
 		try {
-			Stupidix->signForm(Alpha);
-			Stupidix->executeForm(Alpha);
+			Stupidix->signForm(*Alpha);
+			Stupidix->executeForm(*Alpha);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << Alpha << std::endl;
+		std::cout << *Alpha << std::endl;
 	}
-	if (Miraculix) {
+	if (Miraculix && Alpha) {
 		try {
-			Miraculix->signForm(Alpha);
-			Miraculix->executeForm(Alpha);
+			Miraculix->signForm(*Alpha);
+			Miraculix->executeForm(*Alpha);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
 	}
+	if (Alpha)
+		std::cout << std::endl;
 
-	std::cout << std::endl;
-
-	if (Stupidix) {
+	if (Stupidix && Beta) {
 		try {
-			Stupidix->signForm(Beta);
-			Stupidix->executeForm(Beta);
+			Stupidix->signForm(*Beta);
+			Stupidix->executeForm(*Beta);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << Beta << std::endl;
+		std::cout << *Beta << std::endl;
 	}
-	if (Obelix) {
+	if (Obelix && Beta) {
 		try {
-			Obelix->signForm(Beta);
-			Obelix->executeForm(Beta);
+			Obelix->signForm(*Beta);
+			Obelix->executeForm(*Beta);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
 	}
+	if (Beta)
+		std::cout << std::endl;
 
-	std::cout << std::endl;
-
-	if (Stupidix) {
+	if (Stupidix && Gamma) {
 		try {
-			Stupidix->signForm(Gamma);
-			Stupidix->executeForm(Gamma);
+			Stupidix->signForm(*Gamma);
+			Stupidix->executeForm(*Gamma);
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << Gamma << std::endl;
+		std::cout << *Gamma << std::endl;
 	}
-	if (Asterix) {
+	if (Asterix && Gamma) {
 		try {
-			Asterix->signForm(Gamma);
+			Asterix->signForm(*Gamma);
 			for (int i = 0; i < 10; i++)
-				Asterix->executeForm(Gamma);
+				Asterix->executeForm(*Gamma);
 		} catch (std::exception &e) {
 			std::cout <<e.what() << std::endl;
 		}
 	}
-	if(Stupidix)
+
+	if (Alpha)
+		delete Alpha;
+	if (Beta)
+		delete Beta;
+	if (Gamma)
+		delete Gamma;
+	if (Stupidix)
 		delete Stupidix;
 	if (Asterix)
 		delete Asterix;

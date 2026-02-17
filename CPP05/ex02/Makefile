@@ -52,6 +52,9 @@ fclean: clean
 
 re: fclean all
 
+debug: CFLAGS += -g
+debug: re
+
 -include $(DEPS)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug

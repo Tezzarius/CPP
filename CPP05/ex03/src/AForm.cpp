@@ -17,7 +17,7 @@ AForm &AForm::operator=(const AForm &other) {
 }
 
 AForm::~AForm() {
-	
+
 }
 
 const std::string AForm::getName() const{

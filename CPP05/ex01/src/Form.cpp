@@ -2,13 +2,13 @@
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute)
 	: name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute) {
-
+	isSigned = false;
 }
 
 Form::Form(const Form &other)
-	: name(other.name), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {
+	: name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {
 
-}
+	}
 
 Form &Form::operator=(const Form &other) {
 	if (this != &other)
@@ -17,7 +17,7 @@ Form &Form::operator=(const Form &other) {
 }
 
 Form::~Form() {
-
+	
 }
 
 const std::string Form::getName() const{
