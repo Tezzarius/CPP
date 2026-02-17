@@ -6,6 +6,7 @@ NAME = Bureaucrat
 # Colours
 GREEN = \033[0;32m
 RED = \033[0;31m
+DEFAULT = \033[0m
 
 # Compiler and flags
 CXX = c++
@@ -31,7 +32,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)✅ $(NAME) Compiled successfully!"
+	@echo "$(GREEN)✅ $(NAME) Compiled successfully! $(DEFAULT)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
@@ -40,11 +41,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 clean:
 	@rm -rf $(OBJ_DIR) $(DEP_DIR)
-	@echo "$(RED)🧹 Object and dependency files removed!"
+	@echo "$(RED)🧹 Object and dependency files removed! $(DEFAULT)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(RED)🧹 $(NAME) removed!"
+	@echo "$(RED)🧹 $(NAME) removed! $(DEFAULT)"
 
 re: fclean all
 
