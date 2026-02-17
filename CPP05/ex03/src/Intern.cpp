@@ -16,7 +16,7 @@ AForm *Intern::makeForm(std::string form, std::string name) {
 	functions[2] = new ShrubberyCreationForm(name);
 
 	int i;
-	for (i = 0; forms[i].compare(form) && i < 3; i++);
+	for (i = 0; i < 3 && forms[i].compare(form); i++);
 	if (i < 3) {
 		for (int j = 0; j < 3; j++) {
 			if (j != i)

@@ -15,7 +15,7 @@ int main() {
 	AForm *Gamma = NULL;
 
 	try {
-		Alpha = Dude.makeForm("presidentia pardon", "Alpha");
+		Alpha = Dude.makeForm("presidential pardon", "Alpha");
 		Beta = Dude.makeForm("shrubbery creation", "Beta");
 		Gamma = Dude.makeForm("robotomy request", "Gamma");
 	} catch (std::exception &e) {
