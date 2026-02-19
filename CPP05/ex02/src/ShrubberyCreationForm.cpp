@@ -1,24 +1,31 @@
+#include "Debug.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
 #include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string name)
 	: AForm(name, 145, 137) {
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was created" << RESET << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
 	: AForm(other) {
-
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was copied" << RESET << std::endl;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
 	if (this != &other)
 		isSigned = other.isSigned;
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was assigned" << RESET << std::endl;
 	return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was destroyed" << RESET << std::endl;
 }
 
 void printAsciiTree(std::ofstream &outfile);
@@ -50,6 +57,7 @@ void printAsciiTree(std::ofstream &outfile) {
 	<< "├── include" << std::endl
 	<< "│    ├── AForm.hpp" << std::endl
 	<< "│    ├── Bureaucrat.hpp" << std::endl
+	<< "│    ├── Debug.hpp" << std::endl
 	<< "│    ├── PresidentialPardonForm.hpp" << std::endl
 	<< "│    ├── RobotomyRequestForm.hpp" << std::endl
 	<< "│    └── ShrubberyCreationForm.hpp" << std::endl

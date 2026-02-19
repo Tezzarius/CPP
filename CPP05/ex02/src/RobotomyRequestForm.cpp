@@ -1,3 +1,4 @@
+#include "Debug.hpp"
 #include "RobotomyRequestForm.hpp"
 #include <cstdlib>
 #include <ctime>
@@ -5,20 +6,27 @@
 RobotomyRequestForm::RobotomyRequestForm(std::string name)
 	: AForm(name, 72, 45) {
 	std::srand(std::time(0));
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was created" << RESET << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
 	: AForm(other) {
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was copied" << RESET << std::endl;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other) {
 	if (this != &other)
 		isSigned = other.isSigned;
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was assigned" << RESET << std::endl;
 	return *this;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
-
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was destroyed" << RESET << std::endl;
 }
 
 void RobotomyRequestForm::beSigned(Bureaucrat &) {

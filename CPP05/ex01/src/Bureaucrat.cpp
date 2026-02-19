@@ -1,3 +1,4 @@
+#include "Debug.hpp"
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
@@ -7,21 +8,27 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name) {
 	if (grade > 150)
 		throw GradeTooLowException(name);
 	this->grade = grade;
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was created" << RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name), grade(other.grade) {
-
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was copied" << RESET << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
 	if (this != &other) {
 		grade = other.grade;
 	}
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was assigned" << RESET << std::endl;
 	return *this;
 }
 
 Bureaucrat::~Bureaucrat() {
-
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was destroyed" << RESET << std::endl;
 }
 
 const std::string Bureaucrat::getName() const {

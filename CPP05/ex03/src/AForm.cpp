@@ -1,23 +1,30 @@
+#include "Debug.hpp"
 #include "AForm.hpp"
 
 AForm::AForm(std::string name, int gradeToSign, int gradeToExecute)
 	: name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute) {
 		isSigned = false;
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was created" << RESET << std::endl;
 }
 
 AForm::AForm(const AForm &other)
 	: name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {
-
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was copied" << RESET << std::endl;
 }
 
 AForm &AForm::operator=(const AForm &other) {
 	if (this != &other)
 		isSigned = other.isSigned;
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was assigned" << RESET << std::endl;
 	return *this;
 }
 
 AForm::~AForm() {
-
+	if (VERBOSE)
+		std::cout << COLOUR << name << " was destroyed" << RESET << std::endl;
 }
 
 const std::string AForm::getName() const{

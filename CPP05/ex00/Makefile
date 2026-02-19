@@ -48,7 +48,7 @@ fclean: clean
 
 re: fclean all
 
-debug: CFLAGS += -g
+debug: CXXFLAGS += -g -DVERBOSE=1
 debug: re
 
 -include $(DEPS)
