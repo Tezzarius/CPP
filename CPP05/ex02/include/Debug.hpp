@@ -5,7 +5,7 @@
 #  define VERBOSE 0
 # endif
 
-#define COLOUR "\033[33m"
+#define COLOUR "\033[1m\033[33m"
 #define RESET "\x1b[0m"
 
 #endif
