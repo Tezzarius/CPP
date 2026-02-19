@@ -21,7 +21,8 @@ DEP_DIR = dep
 # Source files
 SRC	=	main.cpp\
 		ScalarConverter.cpp\
-		detectType.cpp
+		detectType.cpp\
+		casting.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/,$(SRC))
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

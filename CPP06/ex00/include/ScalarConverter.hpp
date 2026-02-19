@@ -29,5 +29,6 @@ class ScalarConverter {
 };
 
 Type detectType(std::string &str);
+void casting(double d, Type t);
 
 #endif

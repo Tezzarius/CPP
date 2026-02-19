@@ -1,5 +1,6 @@
 #include "Debug.hpp"
 #include "ScalarConverter.hpp"
+#include <sstream>
 
 ScalarConverter::ScalarConverter() {
 
@@ -33,5 +34,18 @@ std::string printType(Type t) {
 void ScalarConverter::convert(std::string str) {
 	Type t = detectType(str);
 	if (VERBOSE)
-		std::cout << std::endl << COLOUR << "Input type: " << printType(t) << RESET << std::endl << std::endl;
+		std::cout << std::endl << COLOUR << "Input type: " << printType(t) << RESET << std::endl;
+	double d;
+	if (t < 6) {
+		std::stringstream ss(str);
+		if (!(ss >> d)) {
+			std::cout << "Error: Converting issue!" << std::endl;
+			return;
+		}
+		casting(d, t);
+		if (VERBOSE)
+			std::cout << COLOUR << "Input as double: " << d << RESET << std::endl << std::endl;
+	}
+	else
+		std::cout << "Unknown input!" << std::endl;
 }
