@@ -2,7 +2,7 @@
 
 int main(int ac, char **av) {
 	if (ac != 2) {
-		std::cout << "This programm need an input!" << std::endl;
+		std::cout << "This programm need one input!" << std::endl;
 		return 1;
 	}
 	ScalarConverter::convert(av[1]);

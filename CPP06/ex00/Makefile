@@ -20,7 +20,8 @@ DEP_DIR = dep
 
 # Source files
 SRC	=	main.cpp\
-		ScalarConverter.cpp
+		ScalarConverter.cpp\
+		detectType.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/,$(SRC))
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
@@ -48,7 +49,7 @@ fclean: clean
 
 re: fclean all
 
-debug: CFLAGS += -g
+debug: CXXFLAGS += -g -DVERBOSE=1
 debug: re
 
 -include $(DEPS)
