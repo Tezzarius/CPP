@@ -6,6 +6,12 @@ void castChar(double d) {
 }
 
 void castInt(double d) {
+	double d;
+	std::stringstream ss(str);
+	if (!(ss >> d)) {
+		std::cout << "Error: Converting issue!" << std::endl;
+		return;
+	}	
 	(void)d;
 }
 
