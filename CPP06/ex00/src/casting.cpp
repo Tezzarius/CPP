@@ -5,14 +5,19 @@ void castChar(double d) {
 	(void)d;
 }
 
-void castInt(double d) {
+void castInt(std::string &str) {
 	double d;
 	std::stringstream ss(str);
 	if (!(ss >> d)) {
 		std::cout << "Error: Converting issue!" << std::endl;
 		return;
-	}	
-	(void)d;
+	}
+	if (VERBOSE)
+		std::cout << "Input as double: " << d << std::endl;
+	if (d > INT_MAX || d < INT_MIN)
+		
+	int i = <static_cast>(int)d;
+	
 }
 
 void castFloat(double d) {
