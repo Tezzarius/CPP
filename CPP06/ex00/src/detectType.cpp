@@ -1,7 +1,7 @@
 #include "ScalarConverter.hpp"
 
 int isChar(std::string &str) {
-	if (str.length() == 1 && !isdigit(str.at(0)) && isprint(str.at(0)))
+	if (str.length() == 1 && !isdigit(str.at(0)))
 		return 1;
 	return 0;
 }

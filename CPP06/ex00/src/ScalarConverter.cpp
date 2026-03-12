@@ -19,32 +19,30 @@ ScalarConverter::~ScalarConverter() {
 
 }
 
-std::string printType(Type t) {
-	switch (t) {
-		case 0: return "CHAR";
-		case 1: return "INT";
-		case 2: return "FLOAT";
-		case 3: return "DOUBLE";
-		case 4: return "PSEUDO_FLOAT";
-		case 5: return "PSEUDO_DOUBLE";
-		case 6: return "UNKNOWN";
-	}
+void castChar(std::string str) {
+	size_t x = 0;
+	char c = str.at(0);
+	if (!isprint(c))
+		x = 1;
+	int i = static_cast<int>(c);
+	float f = static_cast<float>(c);
+	double d = static_cast<double>(c);
+	printOutput(c, i, f, d, x);
 }
 
 void ScalarConverter::convert(std::string str) {
 	Type t = detectType(str);
 	if (VERBOSE)
 		std::cout << std::endl << COLOUR << "Input type: " << printType(t) << RESET << std::endl;
-	double d;
+	double num;
 	if (t < 6) {
-		std::stringstream ss(str);
-		if (!(ss >> d)) {
-			std::cout << "Error: Converting issue!" << std::endl;
-			return;
-		}
-		casting(d, t);
+		char *end;
+		num = std::strtod(str.c_str(), &end);
+		if (t == 0)
+			castChar(str);
+		casting(num, t);
 		if (VERBOSE)
-			std::cout << COLOUR << "Input as double: " << d << RESET << std::endl << std::endl;
+			std::cout << COLOUR << "Input as double: " << num << RESET << std::endl << std::endl;
 	}
 	else
 		std::cout << "Unknown input!" << std::endl;

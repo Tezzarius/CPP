@@ -7,6 +7,7 @@
 #include <limits>
 #include <iomanip>
 #include <cmath>
+#include <cstdlib>
 
 enum Type {
 	CHAR,
@@ -30,5 +31,7 @@ class ScalarConverter {
 
 Type detectType(std::string &str);
 void casting(double d, Type t);
+std::string printType(Type t);
+void printOutput(char c, int i, float f, double d, size_t x);
 
 #endif

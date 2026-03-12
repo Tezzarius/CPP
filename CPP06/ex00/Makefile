@@ -1,7 +1,7 @@
 #Makefile for Conversion of scalar types
 
 # Project name
-NAME = ScalarConverter
+NAME = convert
 
 # Colours
 GREEN = \033[0;32m
@@ -22,7 +22,8 @@ DEP_DIR = dep
 SRC	=	main.cpp\
 		ScalarConverter.cpp\
 		detectType.cpp\
-		casting.cpp
+		casting.cpp\
+		printing.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/,$(SRC))
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
