@@ -1,7 +1,7 @@
-#Makefile for Iter
+#Makefile for Array
 
 # Project name
-NAME = whatever
+NAME = Array
 
 # Colours
 GREEN = \033[0;32m
