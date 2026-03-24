@@ -1,6 +1,8 @@
 #include "ScavTrap.hpp"
 
 int main() {
+	std::cout << "ClapTrap:" << std::endl << std::endl;
+
 	ClapTrap a("Alpha");
 	ClapTrap b("Beta");
 
@@ -10,6 +12,8 @@ int main() {
 
 	for (int i = 0; i < 11; i++)
 		a.attack("Dummy");
+
+	std::cout << std::endl << "ScavTrap:" << std::endl << std::endl;
 
 	ScavTrap g("Gamma");
 	ScavTrap d("Delta");

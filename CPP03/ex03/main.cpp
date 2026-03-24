@@ -1,6 +1,8 @@
 #include "DiamondTrap.hpp"
 
 int main() {
+	std::cout << "ClapTrap:" << std::endl << std::endl;
+
 	ClapTrap a("Alpha");
 	ClapTrap b("Beta");
 
@@ -15,6 +17,8 @@ int main() {
 	b.beRepaired(10);
 
 	std::cout << std::endl;
+
+	std::cout << std::endl << "ScavTrap:" << std::endl << std::endl;
 
 	ScavTrap g("Gamma");
 	ScavTrap d("Delta");
@@ -40,6 +44,8 @@ int main() {
 
 	std::cout << std::endl;
 
+	std::cout << std::endl << "FragTrap:" << std::endl << std::endl;
+
 	FragTrap e("Epsilon");
 	FragTrap z("Zeta");
 
@@ -63,6 +69,8 @@ int main() {
 	z.highFivesGuys();
 
 	std::cout << std::endl;
+
+	std::cout << std::endl << "DiamondTrap:" << std::endl << std::endl;
 
 	DiamondTrap et("Eta");
 	DiamondTrap t("Theta");

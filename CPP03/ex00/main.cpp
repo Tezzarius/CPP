@@ -1,6 +1,8 @@
 #include "ClapTrap.hpp"
 
 int main() {
+	std::cout << "ClapTrap:" << std::endl << std::endl;
+
 	ClapTrap a("Alpha");
 	ClapTrap b("Beta");
 
