@@ -10,11 +10,11 @@ PhoneBook::~PhoneBook() {
 }
 
 Contact& PhoneBook::getContacts(int i) {
-	return contacts[i];
+	return _contacts[i];
 }
 
 int& PhoneBook::getIndex() {
-	return index;
+	return _index;
 }
 
 int checkInput(std::string input) {
@@ -53,18 +53,18 @@ Contact PhoneBook::createContact() {
 }
 
 void PhoneBook::setContact() {
-	this->contacts[this->index] = createContact();
+	this->_contacts[this->_index] = createContact();
 }
 
 void PhoneBook::setIndex() {
 	int i = getIndex();
 	i++;
 	if (i == 8)
-		this->index = 0;
+		this->_index = 0;
 	else
-		this->index = i;
+		this->_index = i;
 }
 
 void PhoneBook::setIndex(int i) {
-	this->index = i;
+	this->_index = i;
 }

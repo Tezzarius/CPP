@@ -1,7 +1,7 @@
-#Makefile for Start with a few functions
+#Makefile for Mutated abomination
 
 # Project name
-NAME = whatever
+NAME = MutantStack
 
 # Colours
 GREEN = \033[0;32m

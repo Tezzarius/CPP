@@ -1,30 +1,30 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie() : name("Zombie") {
+Zombie::Zombie() : _name("Zombie") {
 	std::cout << "Zombie is created" << std::endl;
 }
 
-Zombie::Zombie(std::string name) : name(name) {
-	std::cout << name << " is created" << std::endl;
+Zombie::Zombie(std::string _name) : _name(_name) {
+	std::cout << _name << " is created" << std::endl;
 }
 
 Zombie::Zombie(const Zombie &other) {
-	name = other.name;
-	std::cout << name << " was copied" << std::endl;
+	_name = other._name;
+	std::cout << _name << " was copied" << std::endl;
 }
 
 Zombie &Zombie::operator=(const Zombie &other) {
 	if (this != &other) {
-		name = other.name;
+		_name = other._name;
 	}
-	std::cout << name << " was assigned" << std::endl;
+	std::cout << _name << " was assigned" << std::endl;
 	return *this;
 }
 
 Zombie::~Zombie() {
-	std::cout << name << " is destroyed" << std::endl;
+	std::cout << _name << " is destroyed" << std::endl;
 }
 
 void Zombie::announce() {
-	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

@@ -5,9 +5,9 @@
 
 class HumanB {
 	private:
-		std::string name;
-		Weapon* weapon;
-		bool is_armed;
+		std::string _name;
+		Weapon* _weapon;
+		bool _is_armed;
 	public:
 		HumanB(std::string name);
 		HumanB(const HumanB &other);

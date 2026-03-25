@@ -9,8 +9,8 @@ class AForm;
 
 class Bureaucrat {
 	private:
-		const std::string name;
-		int grade;
+		const std::string _name;
+		int _grade;
 	public:
 		Bureaucrat(const std::string, int);
 		Bureaucrat(const Bureaucrat &);
@@ -25,7 +25,7 @@ class Bureaucrat {
 
 		class GradeTooHighException : public std::exception {
 			private:
-				std::string msg;
+				std::string _msg;
 			public:
 				GradeTooHighException(const std::string &name);
 				~GradeTooHighException() throw();
@@ -34,7 +34,7 @@ class Bureaucrat {
 		};
 		class GradeTooLowException : public std::exception {
 			private:
-				std::string msg;
+				std::string _msg;
 			public:
 				GradeTooLowException(const std::string &name);
 				~GradeTooLowException() throw();

@@ -1,28 +1,28 @@
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string name, Weapon &weapon)
-	: name(name), weapon(weapon) {
-	std::cout << name << " is created" << std::endl;
+HumanA::HumanA(std::string _name, Weapon &_weapon)
+	: _name(_name), _weapon(_weapon) {
+	std::cout << _name << " is created" << std::endl;
 }
 
 HumanA::HumanA(const HumanA &other)
-	: name(other.name), weapon(other.weapon) {
-	std::cout << name << " was copied" << std::endl;
+	: _name(other._name), _weapon(other._weapon) {
+	std::cout << _name << " was copied" << std::endl;
 }
 
 HumanA &HumanA::operator=(const HumanA &other) {
 	if (this != &other) {
-		name = other.name;
-		weapon = other.weapon;
+		_name = other._name;
+		_weapon = other._weapon;
 	}
-	std::cout << name << " was assigned" << std::endl;
+	std::cout << _name << " was assigned" << std::endl;
 	return *this;
 }
 
 HumanA::~HumanA() {
-	std::cout << name << " is destroyed" << std::endl;
+	std::cout << _name << " is destroyed" << std::endl;
 }
 
 void HumanA::attack() {
-	std::cout << name << " attacks with their " << weapon.getType() << std::endl;
+	std::cout << _name << " attacks with their " << _weapon.getType() << std::endl;
 }

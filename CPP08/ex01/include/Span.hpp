@@ -6,8 +6,8 @@
 
 class Span {
 	private:
-		unsigned int N;
-		std::vector<int> store;
+		unsigned int _N;
+		std::vector<int> _store;
 	public:
 		Span();
 		Span(unsigned int);
@@ -18,9 +18,9 @@ class Span {
 		void addNumber(int);
 		template <typename Iterator>
 		void addRange(Iterator begin, Iterator end) {
-			if (store.size() + std::distance(begin, end) > N)
+			if (_store.size() + std::distance(begin, end) > _N)
 				throw std::runtime_error("Not enough space!");
-			store.insert(store.end(), begin, end);
+			_store.insert(_store.end(), begin, end);
 		}
 		unsigned int shortestSpan() const;
 		unsigned int longestSpan() const;

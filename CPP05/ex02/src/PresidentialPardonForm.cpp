@@ -10,20 +10,20 @@ PresidentialPardonForm::PresidentialPardonForm(std::string name)
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other)
 	: AForm(other) {
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was copiedd" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was copiedd" << RESET << std::endl;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other) {
 	if (this != &other)
-		isSigned = other.isSigned;
+		_isSigned = other._isSigned;
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was assigned" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was assigned" << RESET << std::endl;
 	return *this;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was destroyed" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was destroyed" << RESET << std::endl;
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const {
@@ -31,5 +31,5 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const {
 		throw FormNotSignedException(getName());
 	if (executor.getGrade() > getGradeToExecute())
 		throw GradeTooLowException(getName());
-	std::cout << name << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	std::cout << _name << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

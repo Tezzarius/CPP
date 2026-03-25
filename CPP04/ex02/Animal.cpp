@@ -5,13 +5,13 @@ Animal::Animal() {
 }
 
 Animal::Animal(const Animal &other) {
-	type = other.type;
+	_type = other._type;
 	std::cout << "Animal was copied" << std::endl;
 }
 
 Animal &Animal::operator=(const Animal &other) {
 	if (this != &other) {
-		type = other.type;
+		_type = other._type;
 	}
 	std::cout << "Animal assigned" << std::endl;
 	return *this;
@@ -22,5 +22,5 @@ Animal::~Animal() {
 }
 
 std::string Animal::getType() const {
-	return type;
+	return _type;
 }

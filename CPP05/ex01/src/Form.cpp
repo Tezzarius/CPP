@@ -2,45 +2,45 @@
 #include "Form.hpp"
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute)
-	: name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute) {
-	isSigned = false;
+	: _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
+	_isSigned = false;
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was created" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was created" << RESET << std::endl;
 }
 
 Form::Form(const Form &other)
-	: name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {
+	: _name(other._name), _isSigned(other._isSigned), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) {
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was copied" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was copied" << RESET << std::endl;
 }
 
 Form &Form::operator=(const Form &other) {
 	if (this != &other)
-		isSigned = other.isSigned;
+		_isSigned = other._isSigned;
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was assigned" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was assigned" << RESET << std::endl;
 	return *this;
 }
 
 Form::~Form() {
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was destroyed" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was destroyed" << RESET << std::endl;
 }
 
 const std::string Form::getName() const{
-	return name;
+	return _name;
 }
 
 bool Form::getIsSigned() const{
-	return isSigned;
+	return _isSigned;
 }
 
 int Form::getGradeToSign() const {
-	return gradeToSign;
+	return _gradeToSign;
 }
 
 int Form::getGradeToExecute() const{
-	return gradeToExecute;
+	return _gradeToExecute;
 }
 
 Form::GradeTooHighException::GradeTooHighException(const std::string &name) {
@@ -73,8 +73,8 @@ std::ostream &operator<<(std::ostream &os, const Form &b) {
 }
 
 void Form::beSigned(Bureaucrat &b) {
-	if (b.getGrade() > gradeToSign)
-		throw GradeTooLowException(name);
+	if (b.getGrade() > _gradeToSign)
+		throw GradeTooLowException(_name);
 	else
-		isSigned = true;
+		_isSigned = true;
 }

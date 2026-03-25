@@ -13,20 +13,20 @@ RobotomyRequestForm::RobotomyRequestForm(std::string name)
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
 	: AForm(other) {
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was copied" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was copied" << RESET << std::endl;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other) {
 	if (this != &other)
-		isSigned = other.isSigned;
+		_isSigned = other._isSigned;
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was assigned" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was assigned" << RESET << std::endl;
 	return *this;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
 	if (VERBOSE)
-		std::cout << COLOUR << name << " was destroyed" << RESET << std::endl;
+		std::cout << COLOUR << _name << " was destroyed" << RESET << std::endl;
 }
 
 void RobotomyRequestForm::beSigned(Bureaucrat &) {
@@ -40,7 +40,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 		throw GradeTooLowException(getName());	
 	const int val = rand();
 	if (val % 2 == 0)
-		std::cout << name << " has been robotomized successfully." << std::endl;
+		std::cout << _name << " has been robotomized successfully." << std::endl;
 	else
-		std::cout << name << "s robotomy failed." << std::endl;
+		std::cout << _name << "s robotomy failed." << std::endl;
 }

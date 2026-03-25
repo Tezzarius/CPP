@@ -5,13 +5,13 @@ WrongAnimal::WrongAnimal() {
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &other) {
-	type = other.type;
+	_type = other._type;
 	std::cout << "WrongAnimal was copied" << std::endl;
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other) {
 	if (this != &other) {
-		type = other.type;
+		_type = other._type;
 	}
 	std::cout << "WrongAnimal was assigned" << std::endl;
 	return *this;
@@ -22,7 +22,7 @@ WrongAnimal::~WrongAnimal() {
 }
 
 std::string WrongAnimal::getType() const {
-	return type;
+	return _type;
 }
 
 void WrongAnimal::makeSound() const {

@@ -5,10 +5,10 @@
 
 class AForm {
 	protected:
-		const std::string name;
-		bool isSigned;
-		const int gradeToSign;
-		const int gradeToExecute;
+		const std::string _name;
+		bool _isSigned;
+		const int _gradeToSign;
+		const int _gradeToExecute;
 	public:
 		AForm(std::string, int, int);
 		AForm(const AForm &);
@@ -22,7 +22,7 @@ class AForm {
 
 		class GradeTooHighException : public std::exception {
 			private:
-				std::string msg;
+				std::string _msg;
 			public:
 				GradeTooHighException(const std::string &name);
 				virtual ~GradeTooHighException() throw();
@@ -31,7 +31,7 @@ class AForm {
 		};
 		class GradeTooLowException : public std::exception {
 			private:
-				std::string msg;
+				std::string _msg;
 			public:
 				GradeTooLowException(const std::string &name);
 				virtual ~GradeTooLowException() throw();
@@ -40,7 +40,7 @@ class AForm {
 		};
 		class FormNotSignedException : public std::exception {
 			private:
-				std::string msg;
+				std::string _msg;
 			public:
 				FormNotSignedException(const std::string &name);
 				virtual ~FormNotSignedException() throw();

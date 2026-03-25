@@ -6,19 +6,19 @@ Span::Span() {
 
 }
 
-Span::Span(unsigned int num) : N(num) {
+Span::Span(unsigned int num) : _N(num) {
 
 }
 
 Span::Span(const Span &other) {
-	N = other.N;
-	store = other.store;
+	_N = other._N;
+	_store = other._store;
 }
 
 Span &Span::operator=(const Span &other) {
 	if (this != &other) {
-		N = other.N;
-		store = other.store;
+		_N = other._N;
+		_store = other._store;
 	}
 	return *this;
 }
@@ -28,8 +28,8 @@ Span::~Span() {
 }
 
 void Span::addNumber(int num) {
-	if (store.size() < N)
-		store.push_back(num);
+	if (_store.size() < _N)
+		_store.push_back(num);
 	else
 		throw std::runtime_error("Span is already full!");
 }
@@ -41,9 +41,9 @@ int abs(int num) {
 }
 
 unsigned int Span::shortestSpan() const {
-	if (store.size() < 2)
+	if (_store.size() < 2)
 		throw std::runtime_error("Not enough elements for a span!");
-	std::vector<int> sorted = store;
+	std::vector<int> sorted = _store;
 	std::sort(sorted.begin(), sorted.end());
 	unsigned int span = std::numeric_limits<unsigned int>::max();
 	for (unsigned int i = 1; i < sorted.size(); i++) {
@@ -55,9 +55,9 @@ unsigned int Span::shortestSpan() const {
 }
 
 unsigned int Span::longestSpan() const {
-	if (store.size() < 2)
+	if (_store.size() < 2)
 		throw std::runtime_error("Not enough elements for a span!");
-	int min = *std::min_element(store.begin(), store.end());
-	int max = *std::max_element(store.begin(), store.end());
+	int min = *std::min_element(_store.begin(), _store.end());
+	int max = *std::max_element(_store.begin(), _store.end());
 	return max - min;
 }
