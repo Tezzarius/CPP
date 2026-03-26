@@ -4,7 +4,7 @@ Zombie::Zombie() : _name("Zombie") {
 	std::cout << "Zombie is created" << std::endl;
 }
 
-Zombie::Zombie(std::string _name) : _name(_name) {
+Zombie::Zombie(std::string name) : _name(name) {
 	std::cout << _name << " is created" << std::endl;
 }
 

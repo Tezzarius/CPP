@@ -4,8 +4,8 @@ Weapon::Weapon() {
 	
 }
 
-Weapon::Weapon(const std::string &_type) {
-	this->_type = _type;
+Weapon::Weapon(const std::string &type) {
+	this->_type = type;
 }
 
 Weapon::Weapon(const Weapon &other) {
@@ -27,6 +27,6 @@ std::string const& Weapon::getType() {
 	return _type;
 }
 
-void Weapon::setType(const std::string &_type) {
-	this->_type = _type;
+void Weapon::setType(const std::string &type) {
+	this->_type = type;
 }

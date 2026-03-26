@@ -24,8 +24,8 @@ HumanB::~HumanB() {
 	std::cout << _name << " is destroyed" << std::endl;
 }
 
-void HumanB::setWeapon(Weapon &_weapon) {
-	this->_weapon = &_weapon;
+void HumanB::setWeapon(Weapon &weapon) {
+	this->_weapon = &weapon;
 	this->_is_armed = true;
 }
 

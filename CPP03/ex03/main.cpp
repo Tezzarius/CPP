@@ -10,8 +10,9 @@ int main() {
 	b.takeDamage(3);
 	b.beRepaired(2);
 
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i < 11; i++) {
 		a.attack("Titan");
+	}
 
 	b.attack("Nobody");
 	b.beRepaired(10);
@@ -34,8 +35,9 @@ int main() {
 
 	for (int i = 0; i < 7; i++) {
 		g.attack(d.getName());
-		if (d.getHitPoints() > 0)
+		if (d.getHitPoints() > 0) {
 			d.takeDamage(g.getAttackDamage());
+		}
 	}
 
 	d.attack("Nobody");
@@ -60,8 +62,9 @@ int main() {
 
 	for (int i = 0; i < 7; i++) {
 		e.attack(d.getName());
-		if (z.getHitPoints() > 0)
+		if (z.getHitPoints() > 0) {
 			z.takeDamage(e.getAttackDamage());
+		}
 	}
 
 	z.attack("Nobody");
@@ -86,8 +89,9 @@ int main() {
 
 	for (int i = 0; i < 7; i++) {
 		et.attack(d.getName());
-		if (t.getHitPoints() > 0)
+		if (t.getHitPoints() > 0) {
 			t.takeDamage(et.getAttackDamage());
+		}
 	}
 
 	t.attack("Nobody");

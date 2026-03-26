@@ -7,7 +7,8 @@
 
 class Zombie {
 	private:
-		std::string _name;
+		std::string	_name;
+
 	public:
 		Zombie();
 		Zombie(std::string name);
@@ -15,10 +16,10 @@ class Zombie {
 		Zombie &operator=(const Zombie &other);
 		~Zombie();
 		
-		void announce();
-        void setName(const std::string& name);
+		void	announce();
+        void	setName(const std::string& name);
 };
 
-Zombie* zombieHorde(int N, std::string name);
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif

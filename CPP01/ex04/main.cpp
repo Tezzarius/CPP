@@ -34,8 +34,9 @@ int main(int ac, char **av) {
 		return 1;
 	}
 	std::string str;
-	while (std::getline(fd, str))
+	while (std::getline(fd, str)) {
 		searchAndReplace(str, av[2], av[3], outfile);
+	}
 	outfile.close();
 	fd.close();
 }

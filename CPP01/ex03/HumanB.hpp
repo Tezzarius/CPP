@@ -5,17 +5,18 @@
 
 class HumanB {
 	private:
-		std::string _name;
-		Weapon* _weapon;
-		bool _is_armed;
+		std::string	_name;
+		Weapon		*_weapon;
+		bool		_is_armed;
+
 	public:
 		HumanB(std::string name);
 		HumanB(const HumanB &other);
 		HumanB &operator=(const HumanB &other);
 		~HumanB();
 		
-		void setWeapon(Weapon &weapon);
-		void attack();
+		void	setWeapon(Weapon &weapon);
+		void	attack();
 };
 
 #endif

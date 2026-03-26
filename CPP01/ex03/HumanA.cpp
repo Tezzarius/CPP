@@ -1,7 +1,7 @@
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string _name, Weapon &_weapon)
-	: _name(_name), _weapon(_weapon) {
+HumanA::HumanA(std::string name, Weapon &weapon)
+	: _name(name), _weapon(weapon) {
 	std::cout << _name << " is created" << std::endl;
 }
 

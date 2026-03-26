@@ -6,7 +6,8 @@
 
 class Weapon {
 private:
-	std::string _type;
+	std::string	_type;
+	
 public:
 	Weapon();
 	Weapon(const std::string &type);
@@ -14,8 +15,8 @@ public:
 	Weapon &operator=(const Weapon &other);
 	~Weapon();
 
-	std::string const &getType();
-	void setType(const std::string &type);
+	std::string const	&getType();
+	void				setType(const std::string &type);
 };
 
 #endif

@@ -4,15 +4,18 @@ void styleOutput(std::string str) {
 	int len = str.length();
 
 	if (len < 10) {
-		for (int i = 0; i + len < 10; i++)
+		for (int i = 0; i + len < 10; i++) {
 			std::cout << " ";
+		}
 		std::cout << str;
 	}
-	else if (len == 10)
+	else if (len == 10) {
 		std::cout << str;
+	}
 	else if (len > 10) {
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < 9; i++) {
 			std::cout << str.at(i);
+		}
 		std::cout << ".";
 	}
 }
@@ -39,8 +42,9 @@ void searchContact(PhoneBook &book) {
 	std::string input;
 	while (true) {
 		std::cout << "Please enter the index you are looking for: ";
-		if (!std::getline(std::cin, input))
+		if (!std::getline(std::cin, input)) {
 			break;
+		}
 		std::cout << std::endl;
 		if (input.length() != 1 || input.at(0) < '1' || input.at(0) > '8') {
 			std::cout << "Wrong input, index isn't aviable" << std::endl;
@@ -83,8 +87,9 @@ void phoneBookMenu(PhoneBook &book) {
 		else if (!input.compare("EXIT")) {
 			break;
 		}
-		else
+		else {
 			std::cout << "Invalid input, try again" << std::endl;
+		}
 		std::cout << std::endl;
 	}
 }

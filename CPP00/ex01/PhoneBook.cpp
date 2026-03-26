@@ -18,9 +18,11 @@ int& PhoneBook::getIndex() {
 }
 
 int checkInput(std::string input) {
-	for (int i = 0; input[i]; i++)
-		if (!std::isprint(input.at(i)))
+	for (int i = 0; input[i]; i++) {
+		if (!std::isprint(input.at(i))) {
 			return 1;
+		}
+	}
 	return 0;
 }
 
@@ -34,8 +36,9 @@ std::string getInput(std::string str) {
 			std::cout << std::endl << "EOF detected. Exiting." << std::endl;
 			break;
 		}
-		if (!input.empty() && !checkInput(input)) 
+		if (!input.empty() && !checkInput(input)) {
 			break;
+		}
 		std::cout << str << ": Wrong input. Try again: ";
 	}
 	return input;
@@ -59,10 +62,12 @@ void PhoneBook::setContact() {
 void PhoneBook::setIndex() {
 	int i = getIndex();
 	i++;
-	if (i == 8)
+	if (i == 8) {
 		this->_index = 0;
-	else
+	}
+	else {
 		this->_index = i;
+	}
 }
 
 void PhoneBook::setIndex(int i) {

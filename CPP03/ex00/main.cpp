@@ -10,8 +10,9 @@ int main() {
 	a.takeDamage(3);
 	a.beRepaired(2);
 
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i < 11; i++) {
 		a.attack("Dummy");
+	}
 
 	a.beRepaired(5);
 

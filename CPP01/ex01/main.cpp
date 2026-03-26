@@ -29,10 +29,12 @@ int main(int ac, char **av) {
 		return 1;
 	}
 	std::string name;
-	if (ac == 3)
+	if (ac == 3) {
 		name = av[2];
-	else
+	}
+	else {
 		name = "Zombie";
+	}
 	Zombie* Horde = zombieHorde(N, name);
 
 	for (int i = 0; i < N; i++) {
