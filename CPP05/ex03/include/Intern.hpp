@@ -10,7 +10,7 @@ class Intern {
 		Intern &operator=(const Intern &);
 		~Intern();
 
-		AForm *makeForm(std::string, std::string);
+		AForm	*makeForm(std::string, std::string);
 };
 
 #endif

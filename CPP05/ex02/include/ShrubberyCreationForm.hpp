@@ -10,7 +10,7 @@ class ShrubberyCreationForm : public AForm {
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &);
 		virtual ~ShrubberyCreationForm();
 
-		void execute(Bureaucrat const &executor) const;
+		void	execute(Bureaucrat const &executor) const;
 };
 
 #endif

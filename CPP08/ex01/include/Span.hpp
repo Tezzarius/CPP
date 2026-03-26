@@ -6,8 +6,9 @@
 
 class Span {
 	private:
-		unsigned int _N;
-		std::vector<int> _store;
+		unsigned int		_N;
+		std::vector<int>	_store;
+
 	public:
 		Span();
 		Span(unsigned int);
@@ -22,8 +23,9 @@ class Span {
 				throw std::runtime_error("Not enough space!");
 			_store.insert(_store.end(), begin, end);
 		}
-		unsigned int shortestSpan() const;
-		unsigned int longestSpan() const;
+
+		unsigned int	shortestSpan() const;
+		unsigned int	longestSpan() const;
 };
 
 #endif

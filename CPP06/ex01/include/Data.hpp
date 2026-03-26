@@ -2,7 +2,7 @@
 # define DATA_HPP
 
 struct Data {
-	int num;
+	int	num;
 };
 
 #endif

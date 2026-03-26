@@ -28,30 +28,35 @@ int main() {
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Obelix = new Bureaucrat("Obelix", 135);
 		std::cout << *Obelix << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Miraculix = new Bureaucrat("Miraculix", 4);
 		std::cout << *Miraculix << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Stupidix = new Bureaucrat("Stupidix", 0);
 		std::cout << *Stupidix << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Stupidix = new Bureaucrat("Stupidix", 160);
 		std::cout << *Stupidix << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Stupidix = new Bureaucrat("Stupidix", 140);
 		std::cout << *Stupidix << std::endl;
@@ -70,6 +75,7 @@ int main() {
 		}
 		std::cout << *Alpha << std::endl;
 	}
+
 	if (Miraculix && Alpha) {
 		try {
 			Miraculix->signForm(*Alpha);
@@ -78,8 +84,10 @@ int main() {
 			std::cout << e.what() << std::endl;
 		}
 	}
-	if (Alpha)
+
+	if (Alpha) {
 		std::cout << std::endl;
+	}
 
 	if (Stupidix && Beta) {
 		try {
@@ -90,6 +98,7 @@ int main() {
 		}
 		std::cout << *Beta << std::endl;
 	}
+
 	if (Obelix && Beta) {
 		try {
 			Obelix->signForm(*Beta);
@@ -98,8 +107,10 @@ int main() {
 			std::cout << e.what() << std::endl;
 		}
 	}
-	if (Beta)
+
+	if (Beta) {
 		std::cout << std::endl;
+	}
 
 	if (Stupidix && Gamma) {
 		try {
@@ -110,6 +121,7 @@ int main() {
 		}
 		std::cout << *Gamma << std::endl;
 	}
+
 	if (Asterix && Gamma) {
 		try {
 			Asterix->signForm(*Gamma);
@@ -120,18 +132,25 @@ int main() {
 		}
 	}
 
-	if (Alpha)
+	if (Alpha) {
 		delete Alpha;
-	if (Beta)
+	}
+	if (Beta) {
 		delete Beta;
-	if (Gamma)
+	}
+	if (Gamma) {
 		delete Gamma;
-	if (Stupidix)
+	}
+	if (Stupidix) {
 		delete Stupidix;
-	if (Asterix)
+	}
+	if (Asterix) {
 		delete Asterix;
-	if (Obelix)
+	}
+	if (Obelix) {
 		delete Obelix;
-	if (Miraculix)
+	}
+	if (Miraculix) {
 		delete Miraculix;
+	}
 }

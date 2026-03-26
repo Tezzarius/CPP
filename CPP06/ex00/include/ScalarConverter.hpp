@@ -25,13 +25,14 @@ class ScalarConverter {
 		ScalarConverter(const ScalarConverter &other);
 		ScalarConverter &operator=(const ScalarConverter &other);
 		~ScalarConverter();
+
 	public:
-		static void convert(std::string);
+		static void	convert(std::string);
 };
 
-Type detectType(std::string &str);
-void casting(double d, Type t);
-std::string printType(Type t);
-void printOutput(char c, int i, float f, double d, size_t x);
+Type		detectType(std::string &str);
+void		casting(double d, Type t);
+std::string	printType(Type t);
+void		printOutput(char c, int i, float f, double d, size_t x);
 
 #endif

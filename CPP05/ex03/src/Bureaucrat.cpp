@@ -1,34 +1,29 @@
-#include "Debug.hpp"
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name) {
-	if (grade < 1)
+	if (grade < 1) {
 		throw GradeTooHighException(_name);
-	if (grade > 150)
+	}
+	if (grade > 150) {
 		throw GradeTooLowException(_name);
-	this->_grade = grade;
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was created" << RESET << std::endl;
+	}
+	_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade) {
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was copied" << RESET << std::endl;
+
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
 	if (this != &other) {
 		_grade = other._grade;
 	}
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was assigned" << RESET << std::endl;
 	return *this;
 }
 
 Bureaucrat::~Bureaucrat() {
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was destroyed" << RESET << std::endl;
+
 }
 
 const std::string Bureaucrat::getName() const {
@@ -40,14 +35,16 @@ int Bureaucrat::getGrade() const {
 }
 
 void Bureaucrat::incrementGrade() {
-	if (_grade <= 1)
+	if (_grade <= 1) {
 		throw GradeTooHighException(_name);
+	}
 	_grade--;
 }
 
 void Bureaucrat::decrementGrade() {
-	if (_grade >= 150)
+	if (_grade >= 150) {
 		throw GradeTooLowException(_name);
+	}
 	_grade++;
 }
 
@@ -86,15 +83,18 @@ void Bureaucrat::signForm(AForm &f) {
 	} catch (std::exception &e) {
 		std::cout << _name << " couldn't sign " << f.getName() << " because " << e.what() << "." << std::endl;
 	}
-	if (f.getIsSigned() == true)
+	if (f.getIsSigned() == true) {
 		std::cout << _name << " signed " << f.getName() << std::endl;
+	}
 }
 
 void Bureaucrat::executeForm(AForm const &form) const {
-	if (form.getIsSigned() == false)
+	if (form.getIsSigned() == false) {
 		std::cout << _name << " couln't execute " << form.getName() << ", " << form.getName() << " isn't signed." << std::endl;
-	else if (getGrade() > form.getGradeToExecute())
+	}
+	else if (getGrade() > form.getGradeToExecute()) {
 		std::cout << _name << " couln't execute " << form.getName() << ", " << _name << "s _grade is to low!" << std::endl;
+	}
 	else {
 		form.execute(*this);
 		std::cout << _name << " executed " << form.getName() << "." << std::endl;

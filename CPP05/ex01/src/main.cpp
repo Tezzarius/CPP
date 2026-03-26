@@ -12,27 +12,34 @@ int main() {
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Hans = new Bureaucrat("Hans", 160);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Ted = new Bureaucrat("Ted", 3);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
-	}	try {
+	}
+	
+	try {
 		Karl = new Bureaucrat("Karl", 150);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 	
-	if (Hans)
+	if (Hans) {
 		std::cout << *Hans << std::endl;
-	if (Ted)
+	}
+	if (Ted) {
 		std::cout << *Ted << std::endl;
-	if (Karl)
+	}
+	if (Karl) {
 		std::cout << *Karl << std::endl;
+	}
 
 	if (Ted) {
 		std::cout << "Ted will be promoted by 2 grades." << std::endl;
@@ -45,6 +52,7 @@ int main() {
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
+
 		try {
 			Ted->signForm(alpha);
 			std::cout << alpha << std::endl;
@@ -59,6 +67,7 @@ int main() {
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 		}
+		
 		std::cout << beta << std::endl;
 	}
 

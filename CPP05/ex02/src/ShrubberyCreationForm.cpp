@@ -1,40 +1,34 @@
-#include "Debug.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
 #include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string name)
 	: AForm(name, 145, 137) {
-	if (VERBOSE)
-		std::cout << COLOUR << name << " was created" << RESET << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
 	: AForm(other) {
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was copied" << RESET << std::endl;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
-	if (this != &other)
+	if (this != &other) {
 		_isSigned = other._isSigned;
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was assigned" << RESET << std::endl;
+	}
 	return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was destroyed" << RESET << std::endl;
 }
 
 void printAsciiTree(std::ofstream &outfile);
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
-	if (!getIsSigned())
+	if (!getIsSigned()) {
 		throw FormNotSignedException(getName());
-	if (executor.getGrade() > getGradeToExecute())
+	}
+	if (executor.getGrade() > getGradeToExecute()) {
 		throw GradeTooLowException(getName());
+	}
 	std::string file_name = getName() + "_shrubbery";
 	std::ofstream outfile(file_name.c_str());
 	if (!outfile.is_open()) {
@@ -57,7 +51,6 @@ void printAsciiTree(std::ofstream &outfile) {
 	<< "├── include" << std::endl
 	<< "│    ├── AForm.hpp" << std::endl
 	<< "│    ├── Bureaucrat.hpp" << std::endl
-	<< "│    ├── Debug.hpp" << std::endl
 	<< "│    ├── PresidentialPardonForm.hpp" << std::endl
 	<< "│    ├── RobotomyRequestForm.hpp" << std::endl
 	<< "│    └── ShrubberyCreationForm.hpp" << std::endl

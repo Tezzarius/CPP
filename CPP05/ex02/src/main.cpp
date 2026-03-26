@@ -18,30 +18,35 @@ int main() {
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Obelix = new Bureaucrat("Obelix", 135);
 		std::cout << *Obelix << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Miraculix = new Bureaucrat("Miraculix", 4);
 		std::cout << *Miraculix << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Stupidix = new Bureaucrat("Stupidix", 0);
 		std::cout << *Stupidix << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Stupidix = new Bureaucrat("Stupidix", 160);
 		std::cout << *Stupidix << std::endl;
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Stupidix = new Bureaucrat("Stupidix", 140);
 		std::cout << *Stupidix << std::endl;
@@ -60,6 +65,7 @@ int main() {
 		}
 		std::cout << Alpha << std::endl;
 	}
+
 	if (Miraculix) {
 		try {
 			Miraculix->signForm(Alpha);
@@ -80,6 +86,7 @@ int main() {
 		}
 		std::cout << Beta << std::endl;
 	}
+
 	if (Obelix) {
 		try {
 			Obelix->signForm(Beta);
@@ -100,6 +107,7 @@ int main() {
 		}
 		std::cout << Gamma << std::endl;
 	}
+
 	if (Asterix) {
 		try {
 			Asterix->signForm(Gamma);
@@ -109,12 +117,17 @@ int main() {
 			std::cout <<e.what() << std::endl;
 		}
 	}
-	if(Stupidix)
+
+	if(Stupidix) {
 		delete Stupidix;
-	if (Asterix)
+	}
+	if (Asterix) {
 		delete Asterix;
-	if (Obelix)
+	}
+	if (Obelix) {
 		delete Obelix;
-	if (Miraculix)
+	}
+	if (Miraculix) {
 		delete Miraculix;
+	}
 }

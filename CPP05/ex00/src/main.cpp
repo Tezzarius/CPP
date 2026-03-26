@@ -10,27 +10,34 @@ int main() {
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Test = new Bureaucrat("Test", 160);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
 	try {
 		Ted = new Bureaucrat("Ted", 3);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
-	}	try {
+	}
+	
+	try {
 		Karl = new Bureaucrat("Karl", 150);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 	
-	if (Test)
+	if (Test) {
 		std::cout << *Test << std::endl;
-	if (Ted)
+	}
+	if (Ted) {
 		std::cout << *Ted << std::endl;
-	if (Karl)
+	}
+	if (Karl) {
 		std::cout << *Karl << std::endl;
+	}
 
 	if (Ted) {
 		try {

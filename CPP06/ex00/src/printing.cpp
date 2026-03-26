@@ -1,5 +1,4 @@
 #include "ScalarConverter.hpp"
-#include "Debug.hpp"
 
 std::string printType(Type t) {
 	switch (t) {
@@ -14,8 +13,6 @@ std::string printType(Type t) {
 }
 
 void printOutput(char c, int i, float f, double d, size_t x) {
-	if (VERBOSE)
-		std::cout << COLOUR << x << RESET << std::endl;
 	std::cout << "char: ";
 	switch (x) {
 		case 0: std::cout << c << std::endl;
@@ -25,10 +22,12 @@ void printOutput(char c, int i, float f, double d, size_t x) {
 		case 2: std::cout << "impossible" << std::endl;
 	}
 	std::cout << "int: ";
-	if (x == 3 || x == 2)
+	if (x == 3 || x == 2) {
 		std::cout << "impossible" << std::endl;
-	else
+	}
+	else {
 		std::cout << i << std::endl;
+	}
 	if (i == f) {
 		std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
 		std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;		

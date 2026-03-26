@@ -1,30 +1,23 @@
-#include "Debug.hpp"
 #include "AForm.hpp"
 
 AForm::AForm(std::string name, int gradeToSign, int gradeToExecute)
 	: _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 		_isSigned = false;
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was created" << RESET << std::endl;
 }
 
 AForm::AForm(const AForm &other)
 	: _name(other._name), _isSigned(other._isSigned), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) {
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was copied" << RESET << std::endl;
 }
 
 AForm &AForm::operator=(const AForm &other) {
-	if (this != &other)
+	if (this != &other) {
 		_isSigned = other._isSigned;
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was assigned" << RESET << std::endl;
+	}
 	return *this;
 }
 
 AForm::~AForm() {
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was destroyed" << RESET << std::endl;
+
 }
 
 const std::string AForm::getName() const{
@@ -85,10 +78,12 @@ std::ostream &operator<<(std::ostream &os, const AForm &b) {
 }
 
 void AForm::beSigned(Bureaucrat &b) {
-	if (b.getGrade() > _gradeToSign)
+	if (b.getGrade() > _gradeToSign) {
 		throw GradeTooLowException(_name);
-	else
+	}
+	else {
 		_isSigned = true;
+	}
 }
 
 void AForm::execute(Bureaucrat const &executor) const {

@@ -1,34 +1,29 @@
-#include "Debug.hpp"
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name) {
-	if (grade < 1)
+	if (grade < 1) {
 		throw GradeTooHighException(_name);
-	if (grade > 150)
+	}
+	if (grade > 150) {
 		throw GradeTooLowException(_name);
-	this->_grade = grade;
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was created" << RESET << std::endl;
+	}
+	_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade) {
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was copied" << RESET << std::endl;
+
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
 	if (this != &other) {
 		_grade = other._grade;
 	}
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was assigned" << RESET << std::endl;
 	return *this;
 }
 
 Bureaucrat::~Bureaucrat() {
-	if (VERBOSE)
-		std::cout << COLOUR << _name << " was destroyed" << RESET << std::endl;
+
 }
 
 const std::string Bureaucrat::getName() const {
@@ -40,14 +35,16 @@ int Bureaucrat::getGrade() const {
 }
 
 void Bureaucrat::incrementGrade() {
-	if (_grade <= 1)
+	if (_grade <= 1) {
 		throw GradeTooHighException(_name);
+	}
 	_grade--;
 }
 
 void Bureaucrat::decrementGrade() {
-	if (_grade >= 150)
+	if (_grade >= 150) {
 		throw GradeTooLowException(_name);
+	}
 	_grade++;
 }
 

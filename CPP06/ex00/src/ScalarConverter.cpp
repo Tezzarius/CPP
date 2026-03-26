@@ -1,4 +1,3 @@
-#include "Debug.hpp"
 #include "ScalarConverter.hpp"
 #include <sstream>
 
@@ -22,8 +21,9 @@ ScalarConverter::~ScalarConverter() {
 void castChar(std::string str) {
 	size_t x = 0;
 	char c = str.at(0);
-	if (!isprint(c))
+	if (!isprint(c)) {
 		x = 1;
+	}
 	int i = static_cast<int>(c);
 	float f = static_cast<float>(c);
 	double d = static_cast<double>(c);
@@ -32,8 +32,6 @@ void castChar(std::string str) {
 
 void ScalarConverter::convert(std::string str) {
 	Type t = detectType(str);
-	if (VERBOSE)
-		std::cout << std::endl << COLOUR << "Input type: " << printType(t) << RESET << std::endl;
 	double num;
 	if (t < 6) {
 		char *end;
@@ -41,9 +39,8 @@ void ScalarConverter::convert(std::string str) {
 		if (t == 0)
 			castChar(str);
 		casting(num, t);
-		if (VERBOSE)
-			std::cout << COLOUR << "Input as double: " << num << RESET << std::endl << std::endl;
 	}
-	else
+	else {
 		std::cout << "Unknown input!" << std::endl;
+	}
 }

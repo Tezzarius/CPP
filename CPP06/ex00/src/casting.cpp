@@ -1,4 +1,3 @@
-#include "Debug.hpp"
 #include "ScalarConverter.hpp"
 
 void castInt(double &num) {
@@ -7,10 +6,12 @@ void castInt(double &num) {
 	char c = static_cast<char>(i);
 	float f = static_cast<float>(i);
 	double d = static_cast<double>(i);
-	if (!isprint(c))
+	if (!isprint(c)) {
 		x = 1;
-	if (num > INT_MAX || num < INT_MIN)
+	}
+	if (num > INT_MAX || num < INT_MIN) {
 		x = 2;
+	}
 	printOutput(c, i, f, d, x);
 }
 
@@ -20,10 +21,12 @@ void castFloat(double &num) {
 	int i = static_cast<int>(f);
 	char c = static_cast<char>(f);
 	double d = static_cast<double>(f);
-	if (!isprint(c))
+	if (!isprint(c)) {
 		x = 1;
-	if (num > INT_MAX || num < INT_MIN)
+	}
+	if (num > INT_MAX || num < INT_MIN) {
 		x = 2;
+	}
 	printOutput(c, i, f, d, x);
 }
 
@@ -33,10 +36,12 @@ void castDouble(double &num) {
 	char c = static_cast<char>(d);
 	int i = static_cast<int>(d);
 	float f = static_cast<float>(d);
-	if (!isprint(c))
+	if (!isprint(c)) {
 		x = 1;
-	if (num > INT_MAX || num < INT_MIN)
+	}
+	if (num > INT_MAX || num < INT_MIN) {
 		x = 2;
+	}
 	printOutput(c, i, f, d, x);
 }
 

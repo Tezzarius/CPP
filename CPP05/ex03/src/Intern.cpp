@@ -1,27 +1,20 @@
-#include "Debug.hpp"
 #include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
 Intern::Intern() {
-	if (VERBOSE)
-		std::cout << COLOUR << "Intern was created" << RESET << std::endl;
+
 }
 Intern::Intern(const Intern &other) {
 	(void)other;
-	if (VERBOSE)
-		std::cout << COLOUR << "Intern was copied" << RESET << std::endl;
 }
 Intern &Intern::operator=(const Intern &other) {
 	(void)other;
-	if (VERBOSE)
-		std::cout << COLOUR << "Intern was assignedd" << RESET << std::endl;
 	return *this;
 }
 Intern::~Intern() {
-	if (VERBOSE)
-		std::cout << COLOUR << "Intern was destroyed" << RESET << std::endl;
+
 }
 
 AForm *Intern::makeForm(std::string form, std::string name) {
