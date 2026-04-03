@@ -29,13 +29,13 @@ DEPS = $(SRCS:$(SRC_DIR)/%.cpp=$(DEP_DIR)/%.d)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)✅ $(NAME) Compiled successfully! $(DEFAULT)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(DEP_DIR)
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -MT $@ -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(CPPFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -MT $@ -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR) $(DEP_DIR)
