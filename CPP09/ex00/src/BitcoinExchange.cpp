@@ -1,7 +1,10 @@
 #include "BitcoinExchange.hpp"
+#include <iomanip>
 
-int mapingData(std::ifstream &fd) {
-	(void)fd;
+int mapingData(std::string str, double exRate) {
+
+
+	std::cout << std::fixed << std::setprecision(2) << "Date: " << str << "	Rate: " << exRate << std::endl;
 	return 0;
 }
 
@@ -72,15 +75,14 @@ int checkData() {
 				return 1;
 		}
 
-		int exRate = std::strtof(end + 1, &end);
+		double exRate = std::strtof(end + 1, &end);
 		if (*end != '\0') {
 			std::cerr << "Error: Wrong exchange rate format!" << std::endl;
 			return 1;
 		}
-		(void)exRate;
+		if (mapingData(str.substr(0, 10), exRate)) {
+			std::cerr << "Error: Failed to map data.csv!" << std::endl;
 	}
-	if (mapingData(fd)) {
-		std::cerr << "Error: Failed to map data.csv!" << std::endl;
 	}
 	return 0;
 }

@@ -3,11 +3,10 @@
 
 # include <iostream>
 # include <fstream>
-# include <cctype>
 # include <string>
 # include <cstdlib>
+# include <map>
 
-int	mapingData(std::ifstream &fd);
 int	checkData();
 
 #endif
