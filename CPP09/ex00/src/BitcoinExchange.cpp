@@ -82,6 +82,7 @@ int checkData() {
 		}
 		if (mapingData(str.substr(0, 10), exRate)) {
 			std::cerr << "Error: Failed to map data.csv!" << std::endl;
+			return 1;
 	}
 	}
 	return 0;
