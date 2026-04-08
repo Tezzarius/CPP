@@ -9,11 +9,24 @@ int main(int ac, char **av) {
 	std::ifstream fd(av[1]);
 	if (!fd.is_open()) {
 		std::cerr << "Error: Can't open " << av[1] << "!" << std::endl;
-		return 1;
+		return 2;
 	}
 
-	if (checkData()) {
-		return 1;
+	std::map<std::string, double> data;
+
+	if (mappingData(data)) {
+		return 3;
+	}
+	
+	if (VERBOSE) {
+		std::map<std::string, double>::iterator it;
+		for (it = data.begin(); it != data.end(); ++it) {
+			std::cout << std::fixed << std::setprecision(2) << it->first << " => " << it->second << std::endl;
+		}
+	}
+
+	if (bitcoinExchange(data, fd)) {
+		return 4;
 	}
 
 	std::cout << "Success!" << std::endl;

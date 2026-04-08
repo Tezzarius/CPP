@@ -1,14 +1,10 @@
 #include "BitcoinExchange.hpp"
-#include <iomanip>
 
-int mapingData(std::string str, double exRate) {
+int validateDate(std::ifstream fd, std::string &str, double exRate) {
 
-
-	std::cout << std::fixed << std::setprecision(2) << "Date: " << str << "	Rate: " << exRate << std::endl;
-	return 0;
 }
 
-int checkData() {
+int mappingData(std::map<std::string, double> &data) {
 	std::ifstream fd("data.csv");
 	if (!fd.is_open()) {
 		std::cerr << "Error: Can't open data.csv!" << std::endl;
@@ -32,13 +28,13 @@ int checkData() {
 
 		int year = std::strtol(str.c_str(), &end, 10);
 		if (year < 2009 || year > 2026 || *end != '-' || str.at(4) != *end) {
-			std::cerr << "Error: Wrong year format in data.csv!" << std::endl;
+			std::cerr << "Error: Wrong year format!" << std::endl;
 			return 1;
 		}
 
 		int month = std::strtol(end + 1, &end, 10);
 		if (month < 1 || month > 12 || *end != '-' || str.at(7) != *end) {
-			std::cerr << "Error: Wrong month format in data.csv!" << std::endl;
+			std::cerr << "Error: Wrong month format!" << std::endl;
 			return 1;
 		}
 
@@ -80,10 +76,17 @@ int checkData() {
 			std::cerr << "Error: Wrong exchange rate format!" << std::endl;
 			return 1;
 		}
-		if (mapingData(str.substr(0, 10), exRate)) {
-			std::cerr << "Error: Failed to map data.csv!" << std::endl;
-			return 1;
-	}
+		data.insert(std::make_pair(str.substr(0, 10), exRate));
 	}
 	return 0;
+}
+
+int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd) {
+	std::string str;
+
+	std::getline(fd, str);
+	if (str.compare("date | value")) {
+		std::cerr << "Error: Expected \"date | value\" at the beginning of data.csv!" << std::endl;
+		return 1;
+	}
 }
