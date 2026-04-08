@@ -108,8 +108,9 @@ int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd) {
 		if (validateDate(str, value)) {
 			continue;
 		}
+		std::string date = str.substr(0, 10);
 		if (VERBOSE) {
-			std::cout << str.substr(0, 10) << " | " << value << std::endl;
+			std::cout << date << " | " << value << std::endl;
 		}
 	}
 	return 0;
