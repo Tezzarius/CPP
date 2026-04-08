@@ -14,7 +14,7 @@ class AForm {
 		AForm(std::string, int, int);
 		AForm(const AForm &);
 		AForm &operator=(const AForm &);
-		virtual ~AForm();
+		virtual ~AForm() = 0;
 
 		const std::string	getName() const;
 		bool				getIsSigned() const;

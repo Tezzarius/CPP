@@ -16,7 +16,7 @@ int validateDate(std::string &str, double &exRate) {
 	}
 
 	int day = std::strtol(end + 1, &end, 10);
-	if (*end != ',' || str.at(10) != *end) {
+	if ((*end != ',' && *end != ' ') || str.at(10) != *end) {
 		std::cerr << "Error: Wrong day format in data.csv!" << std::endl;
 		return 1;
 	}
@@ -48,7 +48,13 @@ int validateDate(std::string &str, double &exRate) {
 			return 1;
 	}
 
-	exRate = std::strtof(end + 1, &end);
+	// std::cout << str.at(10) << std::endl;
+	int i;
+	for (i = 10; !isdigit(str.at(i)); i++) {
+		std::cout << str.at(i) << std::endl;
+	}
+	
+	exRate = std::strtof(end + i, &end);
 	if (*end != '\0') {
 		std::cerr << "Error: Wrong exchange rate format!" << std::endl;
 		return 1;
@@ -97,5 +103,10 @@ int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd) {
 		std::cerr << "Error: Expected \"date | value\" at the beginning of data.csv!" << std::endl;
 		return 1;
 	}
+
+	while (std::getline(fd, str)) {
+
+	}
+
 	return 0;
 }
