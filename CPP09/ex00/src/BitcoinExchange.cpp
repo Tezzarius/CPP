@@ -1,6 +1,6 @@
 #include "BitcoinExchange.hpp"
 
-int validateDate(std::string &str, double &exRate) {
+int validateDate(std::string &str, double &value) {
 	char *end;
 
 	int year = std::strtol(str.c_str(), &end, 10);
@@ -48,13 +48,12 @@ int validateDate(std::string &str, double &exRate) {
 			return 1;
 	}
 
-	// std::cout << str.at(10) << std::endl;
-	int i;
-	for (i = 10; !isdigit(str.at(i)); i++) {
-		std::cout << str.at(i) << std::endl;
+	int i = 1;
+	if (str.at(10) == ' ' && str.at(11) == '|' && str.at(12) == ' ') {
+		i += 2;
 	}
-	
-	exRate = std::strtof(end + i, &end);
+
+	value = std::strtof(end + i, &end);
 	if (*end != '\0') {
 		std::cerr << "Error: Wrong exchange rate format!" << std::endl;
 		return 1;
@@ -96,17 +95,22 @@ int mappingData(std::map<std::string, double> &data) {
 
 int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd) {
 	std::string str;
+	double		value;
 	(void)data;
 
 	std::getline(fd, str);
 	if (str.compare("date | value")) {
-		std::cerr << "Error: Expected \"date | value\" at the beginning of data.csv!" << std::endl;
+		std::cerr << "Error: Expected \"date | value\" at the beginning of the input file!" << std::endl;
 		return 1;
 	}
 
 	while (std::getline(fd, str)) {
-
+		if (validateDate(str, value)) {
+			continue;
+		}
+		if (VERBOSE) {
+			std::cout << str.substr(0, 10) << " | " << value << std::endl;
+		}
 	}
-
 	return 0;
 }

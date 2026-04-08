@@ -23,6 +23,7 @@ int main(int ac, char **av) {
 		for (it = data.begin(); it != data.end(); ++it) {
 			std::cout << std::fixed << std::setprecision(2) << it->first << " => " << it->second << std::endl;
 		}
+		std::cout << std::endl;
 	}
 
 	if (bitcoinExchange(data, fd)) {
