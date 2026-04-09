@@ -5,33 +5,33 @@ int validateDate(std::string &str, double &value) {
 
 	int year = std::strtol(str.c_str(), &end, 10);
 	if (year < 2009 || year > 2026 || *end != '-' || str.at(4) != *end) {
-		std::cerr << "Error: Wrong year format!" << std::endl;
+		std::cerr << "Error: bad input => " << str.substr(0 ,10) << std::endl;
 		return 1;
 	}
 
 	int month = std::strtol(end + 1, &end, 10);
 	if (month < 1 || month > 12 || *end != '-' || str.at(7) != *end) {
-		std::cerr << "Error: Wrong month format!" << std::endl;
+		std::cerr << "Error: bad input => " << str.substr(0 ,10) << std::endl;
 		return 1;
 	}
 
 	int day = std::strtol(end + 1, &end, 10);
 	if ((*end != ',' && *end != ' ') || str.at(10) != *end) {
-		std::cerr << "Error: Wrong day format in data.csv!" << std::endl;
+		std::cerr << "Error: Wrong date format!" << std::endl;
 		return 1;
 	}
 	
 	switch (month) {
 		case 1: case 3: case 5: case 7: case 8: case 10: case 12: {
 			if (day < 1 || day > 31) {
-				std::cerr << "Error: Day out of range 31!" << std::endl;
+				std::cerr << "Error: bad input => " << str.substr(0 ,10) << std::endl;
 				return 1;
 			}
 			break;
 		}
 		case 4: case 6: case 9: case 11: {
 			if (day < 1 || day > 30) {
-				std::cerr << "Error: Day out of range 30!" << std::endl;
+				std::cerr << "Error: bad input => " << str.substr(0 ,10) << std::endl;
 				return 1;
 			}
 			break;
@@ -39,7 +39,7 @@ int validateDate(std::string &str, double &value) {
 		case 2: {
 			int maxDay = ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) ? 29 : 28;
 			if (day < 1 || day > maxDay) {
-				std::cerr << "Error: Day out of range 28/29!" << std::endl;
+				std::cerr << "Error: bad input => " << str.substr(0 ,10) << std::endl;
 				return 1;
 			}
 			break;
@@ -53,7 +53,16 @@ int validateDate(std::string &str, double &value) {
 		i += 2;
 	}
 
+	if (str.at(10 + i) == '-') {
+		std::cerr << "Error: not a positive number." << std::endl;
+		return 1;
+	}
+
 	value = std::strtof(end + i, &end);
+	if (value > INT_MAX) {
+		std::cerr << "Error: too large number." << std::endl;
+		return 1;
+	}
 	if (*end != '\0') {
 		std::cerr << "Error: Wrong exchange rate format!" << std::endl;
 		return 1;
@@ -93,6 +102,26 @@ int mappingData(std::map<std::string, double> &data) {
 	return 0;
 }
 
+std::map<std::string, double>::iterator findClosestDate(std::map<std::string, double> &data, std::string &date) {
+	std::map<std::string, double>::iterator it = data.lower_bound(date);
+
+	if (it == data.end()) {
+		--it;
+		return it;
+	}
+
+	if (it->first == date) {
+		return it;
+	}
+
+	// if (it == data.begin()) {
+	// 	throw std::runtime_error("no valid date.");
+	// }
+
+	--it;
+	return it;
+}
+
 int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd) {
 	std::string str;
 	double		value;
@@ -108,10 +137,16 @@ int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd) {
 		if (validateDate(str, value)) {
 			continue;
 		}
+
 		std::string date = str.substr(0, 10);
+
 		if (VERBOSE) {
 			std::cout << date << " | " << value << std::endl;
 		}
+
+		std::map<std::string, double>::iterator it = findClosestDate(data, date);
+
+		std::cout << date << " => " << value * it->second << std::endl;
 	}
 	return 0;
 }

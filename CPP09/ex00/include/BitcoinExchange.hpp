@@ -7,6 +7,7 @@
 # include <cstdlib>
 # include <iomanip>
 # include <map>
+# include <climits>
 
 # ifndef VERBOSE
 #  define VERBOSE 0
