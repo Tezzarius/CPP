@@ -9,7 +9,7 @@ RED = \033[0;31m
 DEFAULT = \033[0m
 
 # Compiler and flags
-CXX = g++
+CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 CPPFLAGS = -I include
 
