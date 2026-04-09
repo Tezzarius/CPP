@@ -3,9 +3,14 @@
 int validateDate(std::string &str, double &value) {
 	char *end;
 
-	int year = std::strtol(str.c_str(), &end, 10);
-	if (year < 2009 || year > 2026 || *end != '-' || str.at(4) != *end) {
+	if (str.length() < 10) {
 		std::cerr << "Error: bad input => " << str.substr(0 ,10) << std::endl;
+		return 1;
+	}
+
+	int year = std::strtol(str.c_str(), &end, 10);
+	if (*end != '-' || str.at(4) != *end) {
+		std::cerr << "Error: bad input => " << str << std::endl;
 		return 1;
 	}
 
@@ -17,7 +22,7 @@ int validateDate(std::string &str, double &value) {
 
 	int day = std::strtol(end + 1, &end, 10);
 	if ((*end != ',' && *end != ' ') || str.at(10) != *end) {
-		std::cerr << "Error: Wrong date format!" << std::endl;
+		std::cerr << "Error: bad input => " << str.substr(0 ,10) << std::endl;
 		return 1;
 	}
 	
@@ -49,22 +54,24 @@ int validateDate(std::string &str, double &value) {
 	}
 
 	int i = 1;
-	if (str.at(10) == ' ' && str.at(11) == '|' && str.at(12) == ' ') {
+	if (str.length() > 12 && str.at(10) == ' ' && str.at(11) == '|' && str.at(12) == ' ') {
 		i += 2;
 	}
 
-	if (str.at(10 + i) == '-') {
+	bool isInput = (i > 1);
+
+	value = std::strtod(end + i, &end);
+	if (value < 0) {
 		std::cerr << "Error: not a positive number." << std::endl;
 		return 1;
 	}
 
-	value = std::strtof(end + i, &end);
-	if (value > INT_MAX) {
-		std::cerr << "Error: too large number." << std::endl;
+	else if (isInput && value > 1000) {
+		std::cerr << "Error: too large a number." << std::endl;
 		return 1;
 	}
 	if (*end != '\0') {
-		std::cerr << "Error: Wrong exchange rate format!" << std::endl;
+		std::cerr << "Error: bad input => " << str << std::endl;
 		return 1;
 	}
 	
@@ -89,43 +96,18 @@ int mappingData(std::map<std::string, double> &data) {
 	double exRate;
 
 	while (std::getline(fd, str)) {
-		if (str.empty()) {
+		if (str.empty() || validateDate(str, exRate)) {
 			continue;
 		}
 
-		if (validateDate(str, exRate)) {
-			return 1;
-		}
-
-		data.insert(std::make_pair(str.substr(0, 10), exRate));
+		data[str.substr(0, 10)] = exRate;
 	}
 	return 0;
-}
-
-std::map<std::string, double>::iterator findClosestDate(std::map<std::string, double> &data, std::string &date) {
-	std::map<std::string, double>::iterator it = data.lower_bound(date);
-
-	if (it == data.end()) {
-		--it;
-		return it;
-	}
-
-	if (it->first == date) {
-		return it;
-	}
-
-	// if (it == data.begin()) {
-	// 	throw std::runtime_error("no valid date.");
-	// }
-
-	--it;
-	return it;
 }
 
 int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd) {
 	std::string str;
 	double		value;
-	(void)data;
 
 	std::getline(fd, str);
 	if (str.compare("date | value")) {
@@ -144,9 +126,20 @@ int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd) {
 			std::cout << date << " | " << value << std::endl;
 		}
 
-		std::map<std::string, double>::iterator it = findClosestDate(data, date);
+		std::map<std::string, double>::iterator it = data.lower_bound(date);
 
-		std::cout << date << " => " << value * it->second << std::endl;
+		if (it == data.end()) {
+			--it;
+		}
+		else if (it->first != date) {
+			if (it == data.begin()) {
+				std::cerr << "Error: no valid date." << std::endl;
+				continue;
+			}
+			--it;
+		}
+
+		std::cout << date << " => " << value << " = " << value * it->second << std::endl;
 	}
 	return 0;
 }
