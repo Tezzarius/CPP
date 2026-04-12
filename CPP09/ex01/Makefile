@@ -1,7 +1,7 @@
-#Makefile for Easy find
+#Makefile for Reverse Polish Notation
 
 # Project name
-NAME = easyfind
+NAME = RPN
 
 # Colours
 GREEN = \033[0;32m
