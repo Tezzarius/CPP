@@ -19,7 +19,8 @@ OBJ_DIR = obj
 DEP_DIR = dep
 
 # Source files
-SRC	=	main.cpp
+SRC	=	main.cpp\
+		RPN.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/,$(SRC))
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
