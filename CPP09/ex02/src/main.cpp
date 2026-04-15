@@ -9,7 +9,7 @@ int main(int ac, char **av) {
 	std::vector<long> vec;
 
 	for (int i = 1; av[i]; i++) {
-		if (parseInput(vec, av[i]))
+		if (PmergeMe::parseInput(vec, av[i]))
 			return 1;
 	}
 

@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-int parseInput(std::vector<long> &vec, std::string str) {
+int PmergeMe::parseInput(std::vector<long> &vec, const std::string &str) {
 	if (str.empty()) {
 		std::cerr << "Error: no input" << std::endl;
 		return 1;
