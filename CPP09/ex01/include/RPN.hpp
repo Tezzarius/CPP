@@ -8,6 +8,18 @@
 # include <cstdlib>
 # include <climits>
 
-void	reversePolishNotation(std::stack<int> &s, char **av);
+class RPN {
+	private:
+		std::stack<int> _stack;
+		
+	public:
+		RPN();
+		RPN(const RPN &other);
+		RPN &operator=(const RPN &other);
+		~RPN();
+
+		int	reversePolishNotation(std::string str);
+};
+
 
 #endif

@@ -1,7 +1,7 @@
-#Makefile for Easy find
+#Makefile for PmergeMe
 
 # Project name
-NAME = easyfind
+NAME = PmergeMe
 
 # Colours
 GREEN = \033[0;32m
@@ -19,7 +19,8 @@ OBJ_DIR = obj
 DEP_DIR = dep
 
 # Source files
-SRC	=	main.cpp
+SRC	=	main.cpp\
+		PmergeMe.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/,$(SRC))
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

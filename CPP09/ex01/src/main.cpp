@@ -6,13 +6,11 @@ int main(int ac, char **av) {
 		return 1;
 	}
 
-	std::stack<int> s;
+	RPN rep;
 
-	try {
-		reversePolishNotation(s, av);
-	} catch (const std::exception &e) {
-		std::cerr << e.what() << std::endl;
-		return 1;
+	for (int i = 1; av[i]; i++) {
+		if (rep.reversePolishNotation(av[i]))
+		 return 1;
 	}
 
 	return 0;
