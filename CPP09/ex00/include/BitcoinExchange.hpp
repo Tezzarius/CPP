@@ -12,7 +12,19 @@
 #  define VERBOSE 0
 # endif
 
-int	mappingData(std::map<std::string, double> &data);
-int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd);
+class BitcoinExchange {
+	private:
+		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &other);
+		BitcoinExchange &operator=(const BitcoinExchange &other);
+		~BitcoinExchange();
+
+		static int validateDate(std::string &str, double &value);
+
+	public:
+		static int mappingData(std::map<std::string, double> &data);
+		static int exchange(std::map<std::string, double> &data, std::ifstream &fd);
+};
+
 
 #endif

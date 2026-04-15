@@ -14,7 +14,7 @@ int main(int ac, char **av) {
 
 	std::map<std::string, double> data;
 
-	if (mappingData(data)) {
+	if (BitcoinExchange::mappingData(data)) {
 		return 3;
 	}
 	
@@ -26,7 +26,7 @@ int main(int ac, char **av) {
 		std::cout << std::endl;
 	}
 
-	if (bitcoinExchange(data, fd)) {
+	if (BitcoinExchange::exchange(data, fd)) {
 		return 4;
 	}
 

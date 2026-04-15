@@ -1,6 +1,6 @@
 #include "BitcoinExchange.hpp"
 
-int validateDate(std::string &str, double &value) {
+int BitcoinExchange::validateDate(std::string &str, double &value) {
 	char *end;
 
 	if (str.length() < 10) {
@@ -78,7 +78,7 @@ int validateDate(std::string &str, double &value) {
 	return 0;
 }
 
-int mappingData(std::map<std::string, double> &data) {
+int BitcoinExchange::mappingData(std::map<std::string, double> &data) {
 	std::ifstream fd("data.csv");
 	if (!fd.is_open()) {
 		std::cerr << "Error: Can't open data.csv!" << std::endl;
@@ -105,7 +105,7 @@ int mappingData(std::map<std::string, double> &data) {
 	return 0;
 }
 
-int bitcoinExchange(std::map<std::string, double> &data, std::ifstream &fd) {
+int BitcoinExchange::exchange(std::map<std::string, double> &data, std::ifstream &fd) {
 	std::string str;
 	double		value;
 
