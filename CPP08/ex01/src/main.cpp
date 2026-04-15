@@ -14,7 +14,7 @@ int main() {
 		std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
 		std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 	} catch (std::exception &e) {
-		std::cout << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
 	}
 
 	std::cout << "---------------------" << std::endl;
@@ -25,7 +25,7 @@ int main() {
 
 		std::cout << sp.shortestSpan() << std::endl;
 	} catch (std::exception &e) {
-		std::cout << "Expected error: " << e.what() << std::endl;
+		std::cerr << "Expected error: " << e.what() << std::endl;
     }
 
 	std::cout << "---------------------" << std::endl;
@@ -38,7 +38,7 @@ int main() {
 		sp.addNumber(3);
 		sp.addNumber(4);
 	} catch (std::exception &e) {
-		std::cout << "Overflow error: " << e.what() << std::endl;
+		std::cerr << "Overflow error: " << e.what() << std::endl;
 	}
 
 	std::cout << "---------------------" << std::endl;
@@ -54,7 +54,7 @@ int main() {
 		std::cout << "Big test shortest: " << sp.shortestSpan() << std::endl;
 		std::cout << "Big test longest: " << sp.longestSpan() << std::endl;
 	} catch (std::exception &e) {
-		std::cout << "Big test error: " << e.what() << std::endl;
+		std::cerr << "Big test error: " << e.what() << std::endl;
 	}
 
 	return 0;

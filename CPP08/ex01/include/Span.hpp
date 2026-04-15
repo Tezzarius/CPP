@@ -2,7 +2,9 @@
 # define SPAN_HPP
 
 # include <vector>
-#include <stdexcept>
+# include <stdexcept>
+# include <algorithm>
+# include <limits>
 
 class Span {
 	private:

@@ -2,8 +2,6 @@
 # define EASYFIND_TPP
 
 # include "easyfind.hpp"
-# include <algorithm>
-# include <stdexcept>
 
 template <typename T>
 typename T::iterator easyfind(T &cont, int val) {
