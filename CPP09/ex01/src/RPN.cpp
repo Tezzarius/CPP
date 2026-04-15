@@ -1,24 +1,6 @@
 #include "RPN.hpp"
 
-RPN::RPN() {
-
-}
-
-RPN::RPN(const RPN &other) : _stack(other._stack) {
-
-}
-
-RPN &RPN::operator=(const RPN &other) {
-	if (this != &other)
-		_stack = other._stack;
-	return *this;
-}
-
-RPN::~RPN() {
-
-}
-
-static int useOperator(std::stack<int> &stack, char op) {
+int RPN::useOperator(std::stack<int> &stack, char op) {
 	if (op == ' ')
 		return 0;
 
@@ -27,16 +9,16 @@ static int useOperator(std::stack<int> &stack, char op) {
 		return 1;
 	}
 
-	double b = stack.top(); stack.pop();
-	double a = stack.top(); stack.pop();
-	double result;
+	long b = stack.top(); stack.pop();
+	long a = stack.top(); stack.pop();
+	long result;
 
 	switch (op) {
 		case '+': result = a + b; break;
 		case '-': result = a - b; break;
 		case '*':
 			if ((a * b) > INT_MAX || (a * b) < INT_MIN) {
-				std::cerr << "Error: result out of bound" << std::endl;
+				std::cerr << "Error: int overflow" << std::endl;
 				return 1;
 			}
 			result = a * b;
@@ -56,7 +38,8 @@ static int useOperator(std::stack<int> &stack, char op) {
 	return 0;
 }
 
-int RPN::reversePolishNotation(std::string str) {
+int RPN::reversePolishNotation(const std::string &str) {
+	std::stack<int> stack;
 	char *end;
 
 	const char *current = str.c_str();
@@ -64,13 +47,13 @@ int RPN::reversePolishNotation(std::string str) {
 		int num = std::strtol(current, &end, 10);
 
 		if (end == current) {
-			if (useOperator(_stack, *current))
+			if (useOperator(stack, *current))
 				return 1;
 			current++;
 		}
 		else {
 			if (num < 10 && num >= 0)
-				_stack.push(num);
+				stack.push(num);
 			else {
 				std::cerr << "Error: input number to high" << std::endl;
 				return 1;
@@ -80,12 +63,12 @@ int RPN::reversePolishNotation(std::string str) {
 	}
 
 
-	if (_stack.size() != 1) {
+	if (stack.size() != 1) {
 		std::cerr << "Error: stack size to high" << std::endl;
 		return 1;
 	}
 
-	std::cout << _stack.top() << std::endl;
-	_stack.pop();
+	std::cout << stack.top() << std::endl;
+	stack.pop();
 	return 0;
 }

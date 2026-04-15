@@ -4,21 +4,20 @@
 # include <string>
 # include <iostream>
 # include <stack>
-# include <exception>
 # include <cstdlib>
 # include <climits>
 
 class RPN {
 	private:
-		std::stack<int> _stack;
-		
-	public:
 		RPN();
 		RPN(const RPN &other);
 		RPN &operator=(const RPN &other);
 		~RPN();
 
-		int	reversePolishNotation(std::string str);
+		static int useOperator(std::stack<int> &stack, char op);
+		
+	public:
+		static int	reversePolishNotation(const std::string &str);
 };
 
 

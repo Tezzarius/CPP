@@ -6,10 +6,8 @@ int main(int ac, char **av) {
 		return 1;
 	}
 
-	RPN rep;
-
 	for (int i = 1; av[i]; i++) {
-		if (rep.reversePolishNotation(av[i]))
+		if (RPN::reversePolishNotation(av[i]))
 		 return 1;
 	}
 
