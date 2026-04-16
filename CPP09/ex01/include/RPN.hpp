@@ -17,7 +17,7 @@ class RPN {
 		static int useOperator(std::stack<int> &stack, char op);
 		
 	public:
-		static int	reversePolishNotation(const std::string &str);
+		static int	reversePolishNotation(std::stack<int> &stack, const std::string &str);
 };
 
 

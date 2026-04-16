@@ -6,10 +6,16 @@ int main(int ac, char **av) {
 		return 1;
 	}
 
-	for (int i = 1; av[i]; i++) {
-		if (RPN::reversePolishNotation(av[i]))
-		 return 1;
+	std::stack<int> stack;
+	std::string str = av[1];
+
+	for (int i = 2; av[i]; i++) {
+		str += " ";
+		str += av[i];
 	}
+
+	if (RPN::reversePolishNotation(stack, str))
+		return 1;
 
 	return 0;
 }

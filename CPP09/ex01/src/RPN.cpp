@@ -38,8 +38,7 @@ int RPN::useOperator(std::stack<int> &stack, char op) {
 	return 0;
 }
 
-int RPN::reversePolishNotation(const std::string &str) {
-	std::stack<int> stack;
+int RPN::reversePolishNotation(std::stack<int> &stack, const std::string &str) {
 	char *end;
 
 	const char *current = str.c_str();
@@ -52,8 +51,9 @@ int RPN::reversePolishNotation(const std::string &str) {
 			current++;
 		}
 		else {
-			if (num < 10 && num >= 0)
+			if (num < 10 && num >= 0) {
 				stack.push(num);
+			}
 			else {
 				std::cerr << "Error: input number to high" << std::endl;
 				return 1;
