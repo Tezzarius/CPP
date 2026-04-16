@@ -1,18 +1,24 @@
 #ifndef ITER_HPP
 # define ITER_HPP
 
-template <typename T>
-void iter(T *arr, const unsigned int len, void (*f)(T &)) {
-	for (unsigned int i = 0; i < len; i++) {
-		f(arr[i]);
-	}
-}
+#include <iostream>
 
 template <typename T>
-void iter(const T *arr, const unsigned int len, void (*f)(const T &)) {
-	for (unsigned int i = 0; i < len; i++) {
-		f(arr[i]);
-	}
-}
+void iter(T *ptr, const unsigned int len, void (*f)(T &));
+
+template <typename T>
+void iter(const T *ptr, const unsigned int len, void (*f)(const T &));
+
+//main test templates
+template <typename T>
+void print(T &value);
+
+template <typename T>
+void printConst(const T &value);
+
+template <typename T>
+void addOne(T &value);
+
+# include "iter.tpp"
 
 #endif

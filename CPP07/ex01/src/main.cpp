@@ -1,21 +1,5 @@
 #include "iter.hpp"
-#include <iostream>
 #include <string>
-
-template <typename T>
-void print(T &value) {
-	std::cout << value << " ";
-}
-
-template <typename T>
-void printConst(const T &value) {
-	std::cout << value << " ";
-}
-
-template <typename T>
-void addOne(T &value) {
-	value += 1;
-}
 
 int main() {
 	int intArray[5] = {1, 2, 3, 4, 5};
