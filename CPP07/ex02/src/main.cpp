@@ -1,7 +1,7 @@
+#include "Array.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "Array.hpp"
 
 #define MAX_VAL 750
 
