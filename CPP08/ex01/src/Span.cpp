@@ -34,7 +34,7 @@ void Span::addNumber(int num) {
 	}
 }
 
-int abs(int num) {
+int Span::abs(int num) {
 	if (num < 0) {
 		return -num;
 	}

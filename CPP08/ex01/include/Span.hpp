@@ -10,6 +10,8 @@ class Span {
 	private:
 		unsigned int		_N;
 		std::vector<int>	_store;
+	
+		int abs(int num);
 
 	public:
 		Span();
@@ -19,6 +21,7 @@ class Span {
 		~Span();
 
 		void addNumber(int);
+
 		template <typename Iterator>
 		void addRange(Iterator begin, Iterator end) {
 			if (_store.size() + std::distance(begin, end) > _N)
