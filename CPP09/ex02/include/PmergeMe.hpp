@@ -19,7 +19,7 @@ struct Pair {
 
 class PmergeMe {
 	private:
-		std::string			_input;
+		std::vector<long>	_input;
 		std::vector<long>	_vec;
 		std::deque<long>	_deq;
 

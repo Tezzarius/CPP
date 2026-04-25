@@ -1,14 +1,9 @@
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe(char **av) {
-	_input = av[1];
-	for (int i = 2; av[i]; i++) {
-		_input += ' ';
-		_input += av[i];
-	}
-
 	try {
-		parseInput(_input);
+		for (int i = 1; av[i]; i++)
+			parseInput(av[i]);
 	} catch(...) {
 		throw;
 	}
@@ -43,6 +38,7 @@ void PmergeMe::parseInput(const std::string &str) {
 			throw std::runtime_error("Error: invalid character");
 		
 		if (num >= 0 && num <= INT_MAX) {
+			_input.push_back(num);
 			_vec.push_back(num);
 			_deq.push_back(num);
 		}
@@ -58,9 +54,16 @@ void PmergeMe::fordJohnsonVector(std::vector<long> &vec) {
 }
 
 void PmergeMe::printOutput() {
-	std::cout << "Before:  " << _input << std::endl
-			  << "After:   " << std::endl
-			  << "Time to process a range of " << _vec.size() << " elements with std::vector : " << std::endl
+	int out = (_input.size() < 11) ? _input.size() : 4;
+
+	std::cout << "Before:  ";
+	for (int i = 0; i < out; i++)
+		std::cout << _input.at(i) << " ";
+	std::cout << ((_input.size() < 11) ? "" : "[...]") << std::endl << "After:   ";
+	for (int i = 0; i < out; i++)
+		std::cout << _vec.at(i) << " ";
+	std::cout << ((_vec.size() < 11) ? "" : "[...]") << std::endl;
+	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : " << std::endl
 			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << std::endl;
 
 	if (VERBOSE) {
