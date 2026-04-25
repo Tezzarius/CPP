@@ -58,11 +58,18 @@ void PmergeMe::fordJohnsonVector(std::vector<long> &vec) {
 }
 
 void PmergeMe::printOutput() {
-	std::cout << "vector: ";
-	for (size_t i = 0; i < _vec.size(); i++)
+	std::cout << "Before:  " << _input << std::endl
+			  << "After:   " << std::endl
+			  << "Time to process a range of " << _vec.size() << " elements with std::vector : " << std::endl
+			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << std::endl;
+
+	if (VERBOSE) {
+		std::cout << std::endl << "vector:  ";
+		for (size_t i = 0; i < _vec.size(); i++)
 		std::cout << _vec.at(i) << " ";
-	std::cout << std::endl << "deque:  ";
-	for (size_t i = 0; i < _deq.size(); i++)
+		std::cout << std::endl << "deque:   ";
+		for (size_t i = 0; i < _deq.size(); i++)
 		std::cout << _deq.at(i) << " ";
-	std::cout << std::endl;
+		std::cout << std::endl;
+	}
 }
