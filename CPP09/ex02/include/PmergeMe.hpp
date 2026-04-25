@@ -12,6 +12,11 @@
 # include <vector>
 # include <list>
 
+struct Pair {
+	int small;
+	int large;
+};
+
 class PmergeMe {
 	private:
 		PmergeMe();
