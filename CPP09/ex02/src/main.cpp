@@ -2,7 +2,7 @@
 
 int main(int ac, char **av) {
 	if (ac < 2) {
-		std::cerr << "no input" << std::endl;
+		std::cerr << "Error: no input" << std::endl;
 		return 1;
 	}
 
@@ -15,7 +15,7 @@ int main(int ac, char **av) {
 		return 1;
 	}
 
-	johnson->printOutput();
+	johnson->sortAndPrint();
 
 	delete johnson;
 

@@ -76,3 +76,8 @@ void PmergeMe::printOutput() {
 		std::cout << std::endl;
 	}
 }
+
+void PmergeMe::sortAndPrint() {
+	
+	printOutput();
+}

@@ -29,12 +29,13 @@ class PmergeMe {
 		PmergeMe &operator=(const PmergeMe &other);
 		~PmergeMe();
 
-		void	printOutput();
-
-	private:
+		void sortAndPrint();
+		
+		private:
 		void	parseInput(const std::string &str);
 		void	fordJohnsonVector(std::vector<long> &vec);
 		void	fordJohnsonDeque(std::deque<long> &deq);
+		void	printOutput();
 };
 
 
