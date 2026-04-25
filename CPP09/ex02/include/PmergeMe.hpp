@@ -25,7 +25,7 @@ class PmergeMe {
 		~PmergeMe();
 
 	public:
-		static int parseInput(std::vector<long> &vec, std::deque<long> &deque, const std::string &str);
+		static int parseInput(std::vector<long> &vec, std::deque<long> &deq, const std::string &str);
 };
 
 
