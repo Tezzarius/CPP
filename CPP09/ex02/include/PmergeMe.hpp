@@ -19,13 +19,22 @@ struct Pair {
 
 class PmergeMe {
 	private:
-		PmergeMe();
+		std::string			_input;
+		std::vector<long>	_vec;
+		std::deque<long>	_deq;
+
+	public:
+		PmergeMe(char **av);
 		PmergeMe(const PmergeMe &other);
 		PmergeMe &operator=(const PmergeMe &other);
 		~PmergeMe();
 
-	public:
-		static int parseInput(std::vector<long> &vec, std::deque<long> &deq, const std::string &str);
+		void	printOutput();
+
+	private:
+		void	parseInput(const std::string &str);
+		void	fordJohnsonVector(std::vector<long> &vec);
+		void	fordJohnsonDeque(std::deque<long> &deq);
 };
 
 
