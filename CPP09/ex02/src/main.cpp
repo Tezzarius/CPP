@@ -7,10 +7,10 @@ int main(int ac, char **av) {
 	}
 
 	std::vector<long> vec;
-	std::list<long> lst;
+	std::deque<long> deque;
 
 	for (int i = 1; av[i]; i++) {
-		if (PmergeMe::parseInput(vec, lst, av[i]))
+		if (PmergeMe::parseInput(vec, deque, av[i]))
 			return 1;
 	}
 
@@ -18,9 +18,9 @@ int main(int ac, char **av) {
 		std::cout << "vector: ";
 		for (size_t i = 0; i < vec.size(); i++)
 			std::cout << vec.at(i) << " ";
-		std::cout << std::endl << "list:   ";
-		for (std::list<long>::iterator it = lst.begin(); it != lst.end(); ++it)
-			std::cout << *it << " ";
+		std::cout << std::endl << "deque:  ";
+		for (size_t i = 0; i < deque.size(); i++)
+			std::cout << deque.at(i) << " ";
 		std::cout << std::endl;
 	}
 

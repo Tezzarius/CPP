@@ -2,7 +2,7 @@
 
 
 
-int PmergeMe::parseInput(std::vector<long> &vec, std::list<long> &lst, const std::string &str) {
+int PmergeMe::parseInput(std::vector<long> &vec, std::deque<long> &deque, const std::string &str) {
 	if (str.empty()) {
 		std::cerr << "Error: no input" << std::endl;
 		return 1;
@@ -20,7 +20,7 @@ int PmergeMe::parseInput(std::vector<long> &vec, std::list<long> &lst, const std
 		
 		if (num >= 0 && num <= INT_MAX) {
 			vec.push_back(num);
-			lst.push_back(num);
+			deque.push_back(num);
 		}
 		else {
 			std::cerr << "Error: input number out of range" << std::endl;

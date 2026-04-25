@@ -10,7 +10,7 @@
 # include <cstdlib>
 # include <climits>
 # include <vector>
-# include <list>
+# include <deque>
 
 struct Pair {
 	int small;
@@ -25,7 +25,7 @@ class PmergeMe {
 		~PmergeMe();
 
 	public:
-		static int parseInput(std::vector<long> &vec, std::list<long> &lst, const std::string &str);
+		static int parseInput(std::vector<long> &vec, std::deque<long> &deque, const std::string &str);
 };
 
 
