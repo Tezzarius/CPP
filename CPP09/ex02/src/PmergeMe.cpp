@@ -39,7 +39,7 @@ void PmergeMe::parseInput(const std::string &str) {
 	
 	while (*current != '\0') {
 		long num = std::strtol(current, &end, 10);
-		if (*end != '\0' && *end != ' ')
+		if ((*end != '\0' && *end != ' ') || current == end)
 			throw std::runtime_error("Error: invalid character");
 		
 		if (num >= 0 && num <= INT_MAX) {
