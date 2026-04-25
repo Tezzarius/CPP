@@ -10,6 +10,7 @@
 # include <cstdlib>
 # include <climits>
 # include <vector>
+# include <list>
 
 class PmergeMe {
 	private:
@@ -19,7 +20,7 @@ class PmergeMe {
 		~PmergeMe();
 
 	public:
-		static int parseInput(std::vector<long> &vec, const std::string &str);
+		static int parseInput(std::vector<long> &vec, std::list<long> &lst, const std::string &str);
 };
 
 
