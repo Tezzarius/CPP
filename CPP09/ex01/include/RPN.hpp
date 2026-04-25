@@ -4,6 +4,7 @@
 # include <string>
 # include <iostream>
 # include <stack>
+# include <list>
 # include <cstdlib>
 # include <climits>
 
@@ -14,10 +15,10 @@ class RPN {
 		RPN &operator=(const RPN &other);
 		~RPN();
 
-		static int useOperator(std::stack<int> &stack, char op);
+		static int useOperator(std::stack<int, std::list<int> > &list, char op);
 		
 	public:
-		static int	reversePolishNotation(std::stack<int> &stack, const std::string &str);
+		static int	reversePolishNotation(std::stack<int, std::list<int> > &list, const std::string &str);
 };
 
 

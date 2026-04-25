@@ -1,16 +1,16 @@
 #include "RPN.hpp"
 
-int RPN::useOperator(std::stack<int> &stack, char op) {
+int RPN::useOperator(std::stack<int, std::list<int> > &list, char op) {
 	if (op == ' ')
 		return 0;
 
-	if (stack.size() < 2) {
-		std::cerr << "Error: stack size to low" << std::endl;
+	if (list.size() < 2) {
+		std::cerr << "Error: list size to low" << std::endl;
 		return 1;
 	}
 
-	long b = stack.top(); stack.pop();
-	long a = stack.top(); stack.pop();
+	long b = list.top(); list.pop();
+	long a = list.top(); list.pop();
 	long result;
 
 	switch (op) {
@@ -34,11 +34,11 @@ int RPN::useOperator(std::stack<int> &stack, char op) {
 			return 1;
 		}
 	}
-	stack.push(result);
+	list.push(result);
 	return 0;
 }
 
-int RPN::reversePolishNotation(std::stack<int> &stack, const std::string &str) {
+int RPN::reversePolishNotation(std::stack<int, std::list<int> > &list, const std::string &str) {
 	char *end;
 
 	const char *current = str.c_str();
@@ -46,13 +46,13 @@ int RPN::reversePolishNotation(std::stack<int> &stack, const std::string &str) {
 		int num = std::strtol(current, &end, 10);
 
 		if (end == current) {
-			if (useOperator(stack, *current))
+			if (useOperator(list, *current))
 				return 1;
 			current++;
 		}
 		else {
 			if (num < 10 && num >= 0) {
-				stack.push(num);
+				list.push(num);
 			}
 			else {
 				std::cerr << "Error: input number to high" << std::endl;
@@ -63,12 +63,12 @@ int RPN::reversePolishNotation(std::stack<int> &stack, const std::string &str) {
 	}
 
 
-	if (stack.size() != 1) {
-		std::cerr << "Error: stack size to high" << std::endl;
+	if (list.size() != 1) {
+		std::cerr << "Error: list size to high" << std::endl;
 		return 1;
 	}
 
-	std::cout << stack.top() << std::endl;
-	stack.pop();
+	std::cout << list.top() << std::endl;
+	list.pop();
 	return 0;
 }

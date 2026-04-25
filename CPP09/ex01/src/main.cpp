@@ -6,7 +6,7 @@ int main(int ac, char **av) {
 		return 1;
 	}
 
-	std::stack<int> stack;
+	std::stack<int, std::list<int> > list;
 	std::string str = av[1];
 
 	for (int i = 2; av[i]; i++) {
@@ -14,7 +14,7 @@ int main(int ac, char **av) {
 		str += av[i];
 	}
 
-	if (RPN::reversePolishNotation(stack, str))
+	if (RPN::reversePolishNotation(list, str))
 		return 1;
 
 	return 0;
