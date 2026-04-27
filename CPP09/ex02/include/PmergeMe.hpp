@@ -36,17 +36,16 @@ class PmergeMe {
 
 		void sortAndPrint();
 		
-		private:
+	private:
 		void	parseInput(const std::string &str);
 		void	printContainer(std::string str);
-
-		template <typename T>
-		void	fordJohnson(T &container);
-
 		void	printResult(double timeVector, double timeDeque);
 
 		long	min(long &a, long &b);
 		long	max(long &a, long &b);
+
+		template <typename T>
+		void	fordJohnson(T &container);
 };
 
 # include "PmergeMe.tpp"
