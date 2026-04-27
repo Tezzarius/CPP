@@ -5,6 +5,8 @@ void PmergeMe::fordJohnson(T &container) {
 	if (container.size() < 1)
 		return;
 
+	T mainChain;
+	T pending;
 	std::vector<Pair> pairs;
 	bool hasStraggler = (container.size() % 2 > 0) ? true : false;
 	int straggler;
@@ -14,7 +16,7 @@ void PmergeMe::fordJohnson(T &container) {
 		container.pop_back();
 	}
 
-	for (size_t i = 0, j = 0; i < container.size(); i += 2, j++) {
+	for (size_t i = 0; i < container.size(); i += 2) {
 		Pair p;
 		p.small = min(container[i], container[i + 1]);
 		p.large = max(container[i], container[i + 1]);
@@ -22,16 +24,15 @@ void PmergeMe::fordJohnson(T &container) {
 	}
 
 	for (size_t i = 0; i < pairs.size(); i++) {
-		for (size_t j = 0; j < pairs.size() - 1 && pairs[j].large > pairs[j + 1].large; j++) {
-			Pair tmp = pairs[j];
-			pairs[j] = pairs[j + 1];
-			pairs[j + 1] = tmp;
-		}
+		pending.push_back(pairs[i].small);
+		mainChain.push_back(pairs[i].large);
 	}
 
-	for (size_t i = 0, j = 0; i < pairs.size(); i++, j += 2) {
-		container[j] = pairs[i].small;
-		container[j + 1] = pairs[i].large;
+	container.clear();
+
+	for (size_t i = 0; i < pending.size(); i++) {
+		container.push_back(pending[i]);
+		container.push_back(mainChain[i]);
 	}
 
 	if (VERBOSE) {
