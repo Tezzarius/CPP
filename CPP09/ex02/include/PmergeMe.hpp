@@ -19,8 +19,8 @@
 # include <ctime>
 
 struct Pair {
-	int small;
-	int large;
+	long small;
+	long large;
 };
 
 class PmergeMe {
