@@ -3,21 +3,20 @@
 #include <iostream>
 
 int main() {
-	std::vector<int> v;
+	std::vector<int> vec;
 	
-	v.push_back(1);
-	v.push_back(2);
-	v.push_back(3);
-	v.push_back(4);
-	v.push_back(5);
+	vec.push_back(1);
+	vec.push_back(2);
+	vec.push_back(3);
+	vec.push_back(4);
+	vec.push_back(5);
 
 	try {
-		std::vector<int>::iterator it = easyfind(v, 3);
+		std::vector<int>::iterator it = easyfind(vec, 3);
 		std::cout << "Found: " << *it << std::endl;
-		it = easyfind(v, 6);
+		it = easyfind(vec, 6);
 		std::cout << "Found: " << *it << std::endl;
 	} catch(std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
-
 }
