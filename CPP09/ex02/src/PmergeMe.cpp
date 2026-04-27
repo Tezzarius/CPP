@@ -38,7 +38,6 @@ void PmergeMe::parseInput(const std::string &str) {
 			throw std::runtime_error("Error: invalid character");
 		
 		if (num >= 0 && num <= INT_MAX) {
-			_input.push_back(num);
 			_vec.push_back(num);
 			_deq.push_back(num);
 		}
@@ -49,35 +48,48 @@ void PmergeMe::parseInput(const std::string &str) {
 	}
 }
 
-void PmergeMe::fordJohnsonVector(std::vector<long> &vec) {
-	(void) vec;
+void PmergeMe::fordJohnsonVector() {
+
 }
 
-void PmergeMe::printOutput() {
-	int out = (_input.size() < 11) ? _input.size() : 4;
+void PmergeMe::printBefor() {
+	int out = (_vec.size() < 11) ? _vec.size() : 4;
 
 	std::cout << "Before:  ";
-	for (int i = 0; i < out; i++)
-		std::cout << _input.at(i) << " ";
-	std::cout << ((_input.size() < 11) ? "" : "[...]") << std::endl << "After:   ";
+
+	if (VERBOSE) {
+		for (size_t i = 0; i < _vec.size(); i++)
+			std::cout << _vec.at(i) << " ";
+		std::cout << std::endl;
+		return;
+	}
+
 	for (int i = 0; i < out; i++)
 		std::cout << _vec.at(i) << " ";
 	std::cout << ((_vec.size() < 11) ? "" : "[...]") << std::endl;
-	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : " << std::endl
-			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << std::endl;
+}
+
+void PmergeMe::printAfter() {
+	int out = (_vec.size() < 11) ? _vec.size() : 4;
+
+	std::cout << "After:   ";
 
 	if (VERBOSE) {
-		std::cout << std::endl << "vector:  ";
 		for (size_t i = 0; i < _vec.size(); i++)
-		std::cout << _vec.at(i) << " ";
-		std::cout << std::endl << "deque:   ";
-		for (size_t i = 0; i < _deq.size(); i++)
-		std::cout << _deq.at(i) << " ";
+			std::cout << _vec.at(i) << " ";
 		std::cout << std::endl;
+	} else {
+		for (int i = 0; i < out; i++)
+			std::cout << _vec.at(i) << " ";
+		std::cout << ((_vec.size() < 11) ? "" : "[...]") << std::endl;
 	}
+
+	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : " << std::endl
+			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << std::endl;
 }
 
 void PmergeMe::sortAndPrint() {
-	
-	printOutput();
+	printBefor();
+	fordJohnsonVector();
+	printAfter();
 }

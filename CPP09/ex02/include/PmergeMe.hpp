@@ -1,6 +1,10 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
+# ifndef EXPLAIN
+#  define EXPLAIN 0
+# endif
+
 # ifndef VERBOSE
 #  define VERBOSE 0
 # endif
@@ -19,7 +23,6 @@ struct Pair {
 
 class PmergeMe {
 	private:
-		std::vector<long>	_input;
 		std::vector<long>	_vec;
 		std::deque<long>	_deq;
 
@@ -33,9 +36,10 @@ class PmergeMe {
 		
 		private:
 		void	parseInput(const std::string &str);
-		void	fordJohnsonVector(std::vector<long> &vec);
-		void	fordJohnsonDeque(std::deque<long> &deq);
-		void	printOutput();
+		void	fordJohnsonVector();
+		void	fordJohnsonDeque();
+		void	printBefor();
+		void	printAfter();
 };
 
 

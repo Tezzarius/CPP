@@ -48,6 +48,9 @@ fclean: clean
 
 re: fclean all
 
+explain: CXXFLAGS += -DEXPLAIN=1
+explain: re
+
 debug: CXXFLAGS += -g -DVERBOSE=1
 debug: re
 
