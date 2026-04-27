@@ -10,11 +10,13 @@
 # endif
 
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include <cstdlib>
 # include <climits>
 # include <vector>
 # include <deque>
+# include <ctime>
 
 struct Pair {
 	int small;
@@ -36,10 +38,13 @@ class PmergeMe {
 		
 		private:
 		void	parseInput(const std::string &str);
+		void	printBefor();
 		void	fordJohnsonVector();
 		void	fordJohnsonDeque();
-		void	printBefor();
-		void	printAfter();
+		void	printAfter(double timeVector, double timeDeque);
+		
+		long	min(long &a, long &b);
+		long	max(long &a, long &b);
 };
 
 

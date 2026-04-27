@@ -25,6 +25,22 @@ PmergeMe::~PmergeMe() {
 
 }
 
+void PmergeMe::sortAndPrint() {
+	printBefor();
+
+	std::clock_t startVector = std::clock();
+	fordJohnsonVector();
+	std::clock_t endVector = std::clock();
+	double timeVector = 10.0 * (endVector - startVector) / CLOCKS_PER_SEC;
+
+	std::clock_t startDeque = std::clock();
+	fordJohnsonDeque();
+	std::clock_t endDeque = std::clock();
+	double timeDeque = 10.0 * (endDeque - startDeque) / CLOCKS_PER_SEC;
+
+	printAfter(timeVector, timeDeque);
+}
+
 void PmergeMe::parseInput(const std::string &str) {
 	if (str.empty())
 		throw std::runtime_error("Error: no input");
@@ -48,10 +64,6 @@ void PmergeMe::parseInput(const std::string &str) {
 	}
 }
 
-void PmergeMe::fordJohnsonVector() {
-
-}
-
 void PmergeMe::printBefor() {
 	int out = (_vec.size() < 11) ? _vec.size() : 4;
 
@@ -69,11 +81,44 @@ void PmergeMe::printBefor() {
 	std::cout << ((_vec.size() < 11) ? "" : "[...]") << std::endl;
 }
 
-void PmergeMe::printAfter() {
+void PmergeMe::fordJohnsonVector() {
+	std::vector<Pair> pairs;
+	bool hasStraggler = (_vec.size() % 2 > 0) ? true : false;
+	int straggler;
+
+	if (hasStraggler) {
+		straggler = _vec[_vec.size() - 1];
+		_vec.pop_back();
+	}
+
+	for (size_t i = 0, j = 0; i < _vec.size(); i += 2, j++) {
+		Pair p;
+		p.small = min(_vec[i], _vec[i + 1]);
+		p.large = max(_vec[i], _vec[i + 1]);
+		pairs.push_back(p);
+	}
+
+	if (VERBOSE) {
+		std::cout << std::endl;
+		for (size_t i = 0; i < pairs.size(); i++) {
+			std::cout << "Pair " << i << ": " << pairs[i].small << ", " << pairs[i].large << std::endl;
+		}
+		if (hasStraggler)
+			std::cout << "Straggler: " << straggler << std::endl;
+		
+		std::cout << std::endl;
+	}
+}
+
+void PmergeMe::fordJohnsonDeque() {
+
+}
+
+void PmergeMe::printAfter(double timeVector, double timeDeque) {
 	int out = (_vec.size() < 11) ? _vec.size() : 4;
-
+	
 	std::cout << "After:   ";
-
+	
 	if (VERBOSE) {
 		for (size_t i = 0; i < _vec.size(); i++)
 			std::cout << _vec.at(i) << " ";
@@ -84,12 +129,15 @@ void PmergeMe::printAfter() {
 		std::cout << ((_vec.size() < 11) ? "" : "[...]") << std::endl;
 	}
 
-	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : " << std::endl
-			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << std::endl;
+	std::cout << std::fixed << std::setprecision(5)
+			  << "Time to process a range of " << _vec.size() << " elements with std::vector : " << timeVector << " us" << std::endl
+			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << timeDeque << " us" << std::endl;
 }
 
-void PmergeMe::sortAndPrint() {
-	printBefor();
-	fordJohnsonVector();
-	printAfter();
+long PmergeMe::min(long &a, long &b) {
+	return (a < b) ? a : b;
+}
+
+long PmergeMe::max(long &a, long &b) {
+	return (a > b) ? a : b;
 }

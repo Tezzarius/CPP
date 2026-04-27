@@ -6,6 +6,7 @@ NAME = PmergeMe
 # Colours
 GREEN = \033[0;32m
 RED = \033[0;31m
+VIOLETT = \033[0;35m
 DEFAULT = \033[0m
 
 # Compiler and flags
@@ -30,13 +31,13 @@ DEPS = $(SRCS:$(SRC_DIR)/%.cpp=$(DEP_DIR)/%.d)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)✅ $(NAME) Compiled successfully! $(DEFAULT)"
+	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@echo "$(GREEN)✅ $(NAME) compiled successfully! $(DEFAULT)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(DEP_DIR)
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -MT $@ -c $< -o $@
+	@$(CXX) $(CXXFLAGS) $(CPPFLAGS) -MMD -MP -MF $(DEP_DIR)/$*.d -MT $@ -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR) $(DEP_DIR)
@@ -53,6 +54,7 @@ explain: re
 
 debug: CXXFLAGS += -g -DVERBOSE=1
 debug: re
+	   @echo "$(VIOLETT)🪳  $(NAME) debug mode! $(DEFAULT)"
 
 -include $(DEPS)
 
