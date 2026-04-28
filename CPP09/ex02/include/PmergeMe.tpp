@@ -6,8 +6,8 @@ void PmergeMe::fordJohnson(T &container) {
 		return;
 
 	T mainChain;
-	T pending;
-	bool hasStraggler = (container.size() % 2 > 0) ? true : false;
+	std::vector<Pair> pairs;
+	bool hasStraggler = (container.size() % 2 != 0);
 	int straggler;
 
 	if (hasStraggler) {
@@ -15,23 +15,40 @@ void PmergeMe::fordJohnson(T &container) {
 		container.pop_back();
 	}
 
+	Pair pair;
+
 	for (size_t i = 0; i < container.size(); i += 2) {
-		pending.push_back(std::min(container[i], container[i + 1]));
-		mainChain.push_back(std::max(container[i], container[i + 1]));
+		pair.small = std::min(container[i], container[i + 1]);
+		pair.large = std::max(container[i], container[i + 1]);
+		pairs.push_back(pair);
+		mainChain.push_back(pair.large);
 	}
 
 	fordJohnson(mainChain);
 
-	// if (!pending.empty())
-	// 	mainChain.insert(mainChain.begin(), pending[0]);
+	std::vector<Pair> sortedPairs;
+	std::vector<int> used(pairs.size(), 0);
 
-	std::vector<size_t> order = generateJacobsOrder(pending.size());
+	for (size_t i = 0; i < mainChain.size(); i++) {
+		for (size_t j = 0; j < pairs.size(); j++) {
+			if (used[j] == 0 && mainChain[i] == pairs[j].large) {
+				sortedPairs.push_back(pairs[j]);
+				used[j] = 1;
+				break;
+			}
+		}
+	}
+	
+	if (!sortedPairs.empty())
+		mainChain.insert(mainChain.begin(), sortedPairs[0].small);
 
-	for (size_t i = 0; i < order.size(); i++)
-		binaryInsert(mainChain, pending[order[i]]);
+	std::vector<size_t> order = generateJacobsOrder(sortedPairs.size());
+
+	for (size_t i = 1; i < order.size(); i++)
+		binaryInsert(mainChain, sortedPairs[order[i]].small, findPosition(mainChain, sortedPairs[order[i]].large) + 1);
 
 	if (hasStraggler)
-		binaryInsert(mainChain, straggler);
+		binaryInsert(mainChain, straggler, mainChain.size());
 
 	container = mainChain;
 
@@ -44,9 +61,8 @@ void PmergeMe::fordJohnson(T &container) {
 }
 
 template <typename T>
-void PmergeMe::binaryInsert(T &mainChain, int value) {
+void PmergeMe::binaryInsert(T &mainChain, int value, size_t right) {
 	size_t left = 0;
-	size_t right = mainChain.size();
 	size_t mid;
 
 	while (left < right) {
@@ -59,4 +75,12 @@ void PmergeMe::binaryInsert(T &mainChain, int value) {
 	}
 
 	mainChain.insert(mainChain.begin() + left, value);
+}
+
+template <typename T>
+size_t PmergeMe::findPosition(T &mainChain, int target) {
+	for (size_t i = 0; i < mainChain.size(); i++)
+		if (mainChain[i] == target)
+			return i;
+	return mainChain.size();
 }
