@@ -18,6 +18,11 @@
 # include <deque>
 # include <ctime>
 
+struct Pair {
+	long small;
+	long large;
+};
+
 class PmergeMe {
 	private:
 		std::vector<long>	_vec;
@@ -35,12 +40,14 @@ class PmergeMe {
 		void	parseInput(const std::string &str);
 		void	printContainer(std::string str);
 		void	printResult(double timeVector, double timeDeque);
-
+		
 		template <typename T>
 		void	fordJohnson(T &container);
-
+		
 		template <typename T>
 		void	binaryInsert(T &mainChain, int value);
+		
+		std::vector<size_t>	generateJacobsOrder(size_t size);
 };
 
 # include "PmergeMe.tpp"

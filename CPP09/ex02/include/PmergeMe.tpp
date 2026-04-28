@@ -25,8 +25,10 @@ void PmergeMe::fordJohnson(T &container) {
 	// if (!pending.empty())
 	// 	mainChain.insert(mainChain.begin(), pending[0]);
 
-	for (size_t i = 0; i <pending.size(); i++)
-		binaryInsert(mainChain, pending[i]);
+	std::vector<size_t> order = generateJacobsOrder(pending.size());
+
+	for (size_t i = 0; i < order.size(); i++)
+		binaryInsert(mainChain, pending[order[i]]);
 
 	if (hasStraggler)
 		binaryInsert(mainChain, straggler);

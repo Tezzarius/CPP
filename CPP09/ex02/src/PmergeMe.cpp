@@ -87,3 +87,39 @@ void PmergeMe::printResult(double timeVector, double timeDeque) {
 	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : " << std::setw(4) << timeVector << " us" << std::endl
 			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << std::setw(4) << timeDeque << " us" << std::endl;
 }
+
+std::vector<size_t> PmergeMe::generateJacobsOrder(size_t size) {
+	std::vector<size_t> order;
+	std::vector<size_t> jacob;
+	size_t a = 1;
+	size_t b = 3;
+	size_t next;
+	size_t prev = 0;
+	size_t current;
+
+	if (size == 0)
+		return order;
+
+	jacob.push_back(1);
+
+	while (b < size) {
+		jacob.push_back(b);
+		next = b + (2 * a);
+		a = b;
+		b = next;
+	}
+
+	for (size_t i = 0; i < jacob.size(); i++) {
+		current = jacob[i];
+
+		for (size_t  j = current; j > prev; j--)
+			order.push_back(j - 1);
+		
+		prev = current;
+	}
+
+	for (size_t i = prev; i < size; i++)
+		order.push_back(i);
+
+	return order;
+}
