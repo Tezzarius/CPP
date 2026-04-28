@@ -31,12 +31,12 @@ void PmergeMe::sortAndPrint() {
 	std::clock_t startVector = std::clock();
 	fordJohnson(_vec);
 	std::clock_t endVector = std::clock();
-	double timeVector = 10.0 * (endVector - startVector) / CLOCKS_PER_SEC;
+	double timeVector = 1e6 * (endVector - startVector) / CLOCKS_PER_SEC;
 
 	std::clock_t startDeque = std::clock();
 	fordJohnson(_deq);
 	std::clock_t endDeque = std::clock();
-	double timeDeque = 10.0 * (endDeque - startDeque) / CLOCKS_PER_SEC;
+	double timeDeque = 1e6 * (endDeque - startDeque) / CLOCKS_PER_SEC;
 
 	printResult(timeVector, timeDeque);
 }
@@ -77,22 +77,13 @@ void PmergeMe::printContainer(std::string str) {
 	}
 
 	for (int i = 0; i < out; i++)
-		std::cout << _vec.at(i) << " ";
+		std::cout << std::setw(5) << _vec.at(i) << " ";
 	std::cout << ((_vec.size() < 11) ? "" : "[...]") << std::endl;
 }
 
 void PmergeMe::printResult(double timeVector, double timeDeque) {
 	printContainer("After:  ");
-
-	std::cout << std::fixed << std::setprecision(5)
-			  << "Time to process a range of " << _vec.size() << " elements with std::vector : " << timeVector << " us" << std::endl
-			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << timeDeque << " us" << std::endl;
-}
-
-long PmergeMe::min(long &a, long &b) {
-	return (a < b) ? a : b;
-}
-
-long PmergeMe::max(long &a, long &b) {
-	return (a > b) ? a : b;
+	
+	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : " << std::setw(4) << timeVector << " us" << std::endl
+			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << std::setw(4) << timeDeque << " us" << std::endl;
 }

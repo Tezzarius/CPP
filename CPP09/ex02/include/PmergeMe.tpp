@@ -2,12 +2,11 @@
 
 template <typename T>
 void PmergeMe::fordJohnson(T &container) {
-	if (container.size() < 1)
+	if (container.size() <= 1)
 		return;
 
 	T mainChain;
 	T pending;
-	std::vector<Pair> pairs;
 	bool hasStraggler = (container.size() % 2 > 0) ? true : false;
 	int straggler;
 
@@ -17,32 +16,45 @@ void PmergeMe::fordJohnson(T &container) {
 	}
 
 	for (size_t i = 0; i < container.size(); i += 2) {
-		Pair p;
-		p.small = min(container[i], container[i + 1]);
-		p.large = max(container[i], container[i + 1]);
-		pairs.push_back(p);
+		pending.push_back(std::min(container[i], container[i + 1]));
+		mainChain.push_back(std::max(container[i], container[i + 1]));
 	}
 
-	for (size_t i = 0; i < pairs.size(); i++) {
-		pending.push_back(pairs[i].small);
-		mainChain.push_back(pairs[i].large);
-	}
+	fordJohnson(mainChain);
 
-	container.clear();
+	// if (!pending.empty())
+	// 	mainChain.insert(mainChain.begin(), pending[0]);
 
-	for (size_t i = 0; i < pending.size(); i++) {
-		container.push_back(pending[i]);
-		container.push_back(mainChain[i]);
-	}
+	for (size_t i = 0; i <pending.size(); i++)
+		binaryInsert(mainChain, pending[i]);
 
-	if (VERBOSE) {
+	if (hasStraggler)
+		binaryInsert(mainChain, straggler);
+
+	container = mainChain;
+
+	if (EXPLAIN) {
 		std::cout << std::endl;
-		for (size_t i = 0; i < pairs.size(); i++) {
-			std::cout << "Pair " << i << ": " << pairs[i].small << ", " << pairs[i].large << std::endl;
-		}
-		if (hasStraggler)
-			std::cout << "Straggler: " << straggler << std::endl;
-		
+		for (size_t i = 0; i < mainChain.size(); i++)
+			std::cout << mainChain[i] << " ";
 		std::cout << std::endl;
 	}
+}
+
+template <typename T>
+void PmergeMe::binaryInsert(T &mainChain, int value) {
+	size_t left = 0;
+	size_t right = mainChain.size();
+	size_t mid;
+
+	while (left < right) {
+		mid = (left + right) / 2;
+
+		if (value < mainChain[mid])
+			right = mid;
+		else
+			left = mid + 1;
+	}
+
+	mainChain.insert(mainChain.begin() + left, value);
 }

@@ -18,11 +18,6 @@
 # include <deque>
 # include <ctime>
 
-struct Pair {
-	long small;
-	long large;
-};
-
 class PmergeMe {
 	private:
 		std::vector<long>	_vec;
@@ -41,11 +36,11 @@ class PmergeMe {
 		void	printContainer(std::string str);
 		void	printResult(double timeVector, double timeDeque);
 
-		long	min(long &a, long &b);
-		long	max(long &a, long &b);
-
 		template <typename T>
 		void	fordJohnson(T &container);
+
+		template <typename T>
+		void	binaryInsert(T &mainChain, int value);
 };
 
 # include "PmergeMe.tpp"
