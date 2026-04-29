@@ -53,9 +53,6 @@ class PmergeMe {
 		
 		template <typename T>
 		void	binaryInsert(T &mainChain, int valuem, size_t right);
-
-		template <typename T>
-		size_t	findPosition(T &mainChain, int target);
 		
 		std::vector<size_t>	generateJacobsOrder(size_t size);
 
