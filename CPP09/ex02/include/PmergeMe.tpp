@@ -18,8 +18,14 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 	Pair pair;
 
 	for (size_t i = 0; i < container.size(); i += 2) {
-		pair.small = std::min(container[i], container[i + 1]);
-		pair.large = std::max(container[i], container[i + 1]);
+		if (container[i] < container[i + 1]) {
+			pair.small = container[i];
+			pair.large = container[i + 1];
+		} 
+		else {
+			pair.small = container[i + 1];
+			pair.large = container[i];
+		}
 		pairs.push_back(pair);
 		mainChain.push_back(pair.large);
 		_comparisons++;

@@ -29,10 +29,10 @@ struct Pair {
 
 class PmergeMe {
 	private:
-	std::vector<long>	_vector;
-	std::deque<long>	_deque;
-	bool				_explain;
-	size_t				_comparisons;
+		std::vector<long>	_vector;
+		std::deque<long>	_deque;
+		bool				_explain;
+		size_t				_comparisons;
 
 	public:
 		PmergeMe(char **av);
