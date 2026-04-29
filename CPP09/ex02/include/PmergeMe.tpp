@@ -8,7 +8,7 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 	T mainChain;
 	std::vector<Pair> pairs;
 	bool hasStraggler = (container.size() % 2 != 0);
-	int straggler;
+	long straggler;
 
 	if (hasStraggler) {
 		straggler = container[container.size() - 1];
@@ -17,7 +17,7 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 
 	Pair pair;
 
-	for (size_t i = 0; i < container.size(); i += 2) {
+	for (size_t i = 0; i + 1 < container.size(); i += 2) {
 		if (container[i] < container[i + 1]) {
 			pair.small = container[i];
 			pair.large = container[i + 1];
@@ -26,9 +26,9 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 			pair.small = container[i + 1];
 			pair.large = container[i];
 		}
+		_comparisons++;
 		pairs.push_back(pair);
 		mainChain.push_back(pair.large);
-		_comparisons++;
 	}
 
 	if (_explain && EXPLAIN)
@@ -67,25 +67,24 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 }
 
 template <typename T>
-void PmergeMe::binaryInsert(T &mainChain, int value, size_t right) {
+void PmergeMe::binaryInsert(T &mainChain, long value, size_t right) {
 	size_t left = 0;
 	size_t mid;
 
 	while (left < right) {
 		mid = (left + right) / 2;
-
+		_comparisons++;
 		if (value < mainChain[mid])
 			right = mid;
 		else
 			left = mid + 1;
-		_comparisons++;
 	}
 
 	mainChain.insert(mainChain.begin() + left, value);
 }
 
 template <typename T>
-size_t PmergeMe::findPosition(T &mainChain, int target) {
+size_t PmergeMe::findPosition(T &mainChain, long target) {
 	size_t i;
 
 	i = 0;

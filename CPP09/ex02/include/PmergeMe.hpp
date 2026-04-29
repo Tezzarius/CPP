@@ -52,15 +52,15 @@ class PmergeMe {
 		void	fordJohnson(T &container, int depth);
 		
 		template <typename T>
-		void	binaryInsert(T &mainChain, int valuem, size_t right);
+		void	binaryInsert(T &mainChain, long value, size_t right);
 
 		template <typename T>
-		size_t	findPosition(T &mainChain, int target);
+		size_t	findPosition(T &mainChain, long target);
 
 		std::vector<size_t>	generateJacobsOrder(size_t size);
 
 		template <typename T>
-		void	explainBefore(T &container, bool hasStraggler, int straggler, std::vector<Pair> &pairs, T &mainChain, int depth);
+		void	explainBefore(T &container, bool hasStraggler, long straggler, std::vector<Pair> &pairs, T &mainChain, int depth);
 
 		template <typename T>
 		void	explainAfter(std::vector<Pair> &sortedPairs, T &mainChain, std::vector<size_t> &order, int depth);

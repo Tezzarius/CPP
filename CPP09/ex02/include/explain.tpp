@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 template <typename T>
-void PmergeMe::explainBefore(T &container, bool hasStraggler, int straggler, std::vector<Pair> &pairs, T &mainChain, int depth) {
+void PmergeMe::explainBefore(T &container, bool hasStraggler, long straggler, std::vector<Pair> &pairs, T &mainChain, int depth) {
 	std::cout << std::endl;
 	printIndent(depth);
 
