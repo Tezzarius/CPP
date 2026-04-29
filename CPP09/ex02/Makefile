@@ -21,7 +21,7 @@ DEP_DIR = dep
 
 # Source files
 SRC	=	main.cpp\
-		PmergeMe.cpp
+		PmergeMe.cpp\
 
 SRCS = $(addprefix $(SRC_DIR)/,$(SRC))
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

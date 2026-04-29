@@ -25,6 +25,9 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 		_comparisons++;
 	}
 
+	if (_explain && EXPLAIN)
+		explainBefore(container, hasStraggler, straggler, pairs, mainChain, depth);
+
 	fordJohnson(mainChain, depth + 1);
 
 	std::vector<Pair> sortedPairs;
@@ -45,6 +48,9 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 
 	std::vector<size_t> order = generateJacobsOrder(sortedPairs.size());
 
+	if (_explain && EXPLAIN)
+		explainAfter(sortedPairs, mainChain, order, depth);
+
 	for (size_t i = 1; i < order.size(); i++)
 		binaryInsert(mainChain, sortedPairs[order[i]].small, findPosition(mainChain, sortedPairs[order[i]].large) + 1);
 
@@ -52,9 +58,6 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 		binaryInsert(mainChain, straggler, mainChain.size());
 
 	container = mainChain;
-
-	if (EXPLAIN)
-		std::cout << "test" << std::endl;
 }
 
 template <typename T>

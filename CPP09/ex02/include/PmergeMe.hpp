@@ -9,6 +9,10 @@
 #  define VERBOSE 0
 # endif
 
+# define GREY "\033[1;37m"
+# define GREEN "\033[1;32m"
+# define RESET "\033[0m"
+
 # include <iostream>
 # include <iomanip>
 # include <string>
@@ -42,6 +46,7 @@ class PmergeMe {
 		void	parseInput(const std::string &str);
 		void	printContainer(std::string str);
 		void	printResult(double timeVector, double timeDeque);
+		void	printIndent(int depth);
 		
 		template <typename T>
 		void	fordJohnson(T &container, int depth);
@@ -53,8 +58,15 @@ class PmergeMe {
 		size_t	findPosition(T &mainChain, int target);
 		
 		std::vector<size_t>	generateJacobsOrder(size_t size);
+
+		template <typename T>
+		void	explainBefore(T &container, bool hasStraggler, int straggler, std::vector<Pair> &pairs, T &mainChain, int depth);
+
+		template <typename T>
+		void	explainAfter(std::vector<Pair> &sortedPairs, T &mainChain, std::vector<size_t> &order, int depth);
 };
 
 # include "PmergeMe.tpp"
+# include "explain.tpp"
 
 #endif

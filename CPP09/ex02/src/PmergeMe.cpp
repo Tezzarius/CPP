@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(char **av) : _explain(false), _comparisons(0) {
+PmergeMe::PmergeMe(char **av) : _explain(true), _comparisons(0) {
 	try {
 		for (int i = 1; av[i]; i++)
 			parseInput(av[i]);
@@ -35,6 +35,7 @@ void PmergeMe::sortAndPrint() {
 	fordJohnson(_vector, 0);
 	std::clock_t endVector = std::clock();
 	double timeVector = 1e6 * (endVector - startVector) / CLOCKS_PER_SEC;
+	_explain = false;
 	
 	_comparisons = 0;
 	std::clock_t startDeque = std::clock();
@@ -81,11 +82,14 @@ void PmergeMe::printContainer(std::string str) {
 	}
 
 	for (int i = 0; i < out; i++)
-		std::cout << std::setw(5) << _vector.at(i) << " ";
+		std::cout << _vector.at(i) << " ";
 	std::cout << ((_vector.size() < 11) ? "" : "[...]") << std::endl;
 }
 
 void PmergeMe::printResult(double timeVector, double timeDeque) {
+	if (EXPLAIN)
+		std::cout << std::endl;
+
 	printContainer("After:  ");
 	
 	std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector : " << std::setw(4) << timeVector << " us" << std::endl
@@ -128,4 +132,9 @@ std::vector<size_t> PmergeMe::generateJacobsOrder(size_t size) {
 		order.push_back(i);
 
 	return order;
+}
+
+void PmergeMe::printIndent(int depth) {
+	for (int i = 0; i < depth; i++)
+		std::cout << "    ";
 }
