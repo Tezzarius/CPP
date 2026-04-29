@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 template <typename T>
-void PmergeMe::fordJohnson(T &container) {
+void PmergeMe::fordJohnson(T &container, int depth) {
 	if (container.size() <= 1)
 		return;
 
@@ -22,9 +22,10 @@ void PmergeMe::fordJohnson(T &container) {
 		pair.large = std::max(container[i], container[i + 1]);
 		pairs.push_back(pair);
 		mainChain.push_back(pair.large);
+		_comparisons++;
 	}
 
-	fordJohnson(mainChain);
+	fordJohnson(mainChain, depth + 1);
 
 	std::vector<Pair> sortedPairs;
 	std::vector<int> used(pairs.size(), 0);
@@ -52,12 +53,8 @@ void PmergeMe::fordJohnson(T &container) {
 
 	container = mainChain;
 
-	if (EXPLAIN) {
-		std::cout << std::endl;
-		for (size_t i = 0; i < mainChain.size(); i++)
-			std::cout << mainChain[i] << " ";
-		std::cout << std::endl;
-	}
+	if (EXPLAIN)
+		std::cout << "test" << std::endl;
 }
 
 template <typename T>
@@ -72,6 +69,7 @@ void PmergeMe::binaryInsert(T &mainChain, int value, size_t right) {
 			right = mid;
 		else
 			left = mid + 1;
+		_comparisons++;
 	}
 
 	mainChain.insert(mainChain.begin() + left, value);

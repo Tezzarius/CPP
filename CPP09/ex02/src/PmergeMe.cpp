@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(char **av) {
+PmergeMe::PmergeMe(char **av) : _explain(false), _comparisons(0) {
 	try {
 		for (int i = 1; av[i]; i++)
 			parseInput(av[i]);
@@ -9,14 +9,17 @@ PmergeMe::PmergeMe(char **av) {
 	}
 }
 
-PmergeMe::PmergeMe(const PmergeMe &other) : _vec(other._vec), _deq(other._deq) {
+PmergeMe::PmergeMe(const PmergeMe &other)
+	: _vector(other._vector), _deque(other._deque), _explain(other._explain) , _comparisons(other._comparisons) {
 	
 }
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
 	if (this != &other) {
-		_vec = other._vec;
-		_deq = other._deq;
+		_vector = other._vector;
+		_deque = other._deque;
+		_explain = other._explain;
+		_comparisons = other._comparisons;
 	}
 	return *this;
 }
@@ -29,12 +32,13 @@ void PmergeMe::sortAndPrint() {
 	printContainer("Before: ");
 
 	std::clock_t startVector = std::clock();
-	fordJohnson(_vec);
+	fordJohnson(_vector, 0);
 	std::clock_t endVector = std::clock();
 	double timeVector = 1e6 * (endVector - startVector) / CLOCKS_PER_SEC;
-
+	
+	_comparisons = 0;
 	std::clock_t startDeque = std::clock();
-	fordJohnson(_deq);
+	fordJohnson(_deque, 0);
 	std::clock_t endDeque = std::clock();
 	double timeDeque = 1e6 * (endDeque - startDeque) / CLOCKS_PER_SEC;
 
@@ -54,8 +58,8 @@ void PmergeMe::parseInput(const std::string &str) {
 			throw std::runtime_error("Error: invalid character");
 		
 		if (num >= 0 && num <= INT_MAX) {
-			_vec.push_back(num);
-			_deq.push_back(num);
+			_vector.push_back(num);
+			_deque.push_back(num);
 		}
 		else
 			throw std::runtime_error("Error: input number out of range");
@@ -65,27 +69,29 @@ void PmergeMe::parseInput(const std::string &str) {
 }
 
 void PmergeMe::printContainer(std::string str) {
-	int out = (_vec.size() < 11) ? _vec.size() : 4;
+	int out = (_vector.size() < 11) ? _vector.size() : 4;
 
 	std::cout << str;
 
 	if (VERBOSE) {
-		for (size_t i = 0; i < _vec.size(); i++)
-			std::cout << _vec.at(i) << " ";
+		for (size_t i = 0; i < _vector.size(); i++)
+			std::cout << _vector.at(i) << " ";
 		std::cout << std::endl;
 		return;
 	}
 
 	for (int i = 0; i < out; i++)
-		std::cout << std::setw(5) << _vec.at(i) << " ";
-	std::cout << ((_vec.size() < 11) ? "" : "[...]") << std::endl;
+		std::cout << std::setw(5) << _vector.at(i) << " ";
+	std::cout << ((_vector.size() < 11) ? "" : "[...]") << std::endl;
 }
 
 void PmergeMe::printResult(double timeVector, double timeDeque) {
 	printContainer("After:  ");
 	
-	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : " << std::setw(4) << timeVector << " us" << std::endl
-			  << "Time to process a range of " << _deq.size() << " elements with std::deque  : " << std::setw(4) << timeDeque << " us" << std::endl;
+	std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector : " << std::setw(4) << timeVector << " us" << std::endl
+			  << "Time to process a range of " << _deque.size() << " elements with std::deque  : " << std::setw(4) << timeDeque << " us" << std::endl;
+	if (VERBOSE)
+		std::cout << "Comparisons used for " << _vector.size() << " elements: " << _comparisons << std::endl;
 }
 
 std::vector<size_t> PmergeMe::generateJacobsOrder(size_t size) {

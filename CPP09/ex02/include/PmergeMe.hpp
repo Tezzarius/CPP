@@ -25,8 +25,10 @@ struct Pair {
 
 class PmergeMe {
 	private:
-		std::vector<long>	_vec;
-		std::deque<long>	_deq;
+	std::vector<long>	_vector;
+	std::deque<long>	_deque;
+	bool				_explain;
+	size_t				_comparisons;
 
 	public:
 		PmergeMe(char **av);
@@ -42,7 +44,7 @@ class PmergeMe {
 		void	printResult(double timeVector, double timeDeque);
 		
 		template <typename T>
-		void	fordJohnson(T &container);
+		void	fordJohnson(T &container, int depth);
 		
 		template <typename T>
 		void	binaryInsert(T &mainChain, int valuem, size_t right);
