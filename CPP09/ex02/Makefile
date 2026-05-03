@@ -10,7 +10,7 @@ VIOLETT = \033[0;35m
 DEFAULT = \033[0m
 
 # Compiler and flags
-CXX = c++
+CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 CPPFLAGS = -I include
 
