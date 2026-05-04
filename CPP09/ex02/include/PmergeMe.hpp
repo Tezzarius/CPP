@@ -64,7 +64,6 @@ class PmergeMe {
 		~PmergeMe();
 
 		void sortAndPrint();
-		
 };
 
 # include "PmergeMe.tpp"
