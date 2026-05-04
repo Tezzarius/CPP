@@ -1,8 +1,5 @@
 #include "PmergeMe.hpp"
 
-
-#include "PmergeMe.hpp"
-
 template <typename T>
 void PmergeMe::fordJohnson(T &container, int depth) {
 	if (container.size() <= 1)
@@ -17,7 +14,6 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 		container.pop_back();
 	}
 
-	size_t debug_start = _comparisons;
 	for (size_t i = 0; i + 1 < container.size(); i += 2) {
 		Pair pair;
 		_comparisons++;
@@ -32,12 +28,13 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 		mainChain.push_back(pair.large);
 	}
 
-	if (depth == 0) std::cout << "[DEBUG] Nach Pairing: " << (_comparisons-debug_start) << " Vergleiche, gesamt: " << _comparisons << std::endl;
+	if (_explain && EXPLAIN) explainBefore(container, hasStraggler, straggler, pairs, mainChain, depth);
 
 	fordJohnson(mainChain, depth + 1);
 
 	std::vector<Pair> sortedPairs;
 	std::vector<int> used(pairs.size(), 0);
+
 	for (size_t i = 0; i < mainChain.size(); i++) {
 		for (size_t j = 0; j < pairs.size(); j++) {
 			if (!used[j] && mainChain[i] == pairs[j].large) {
@@ -50,33 +47,24 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 
 	std::vector<size_t> order = generateJacobsOrder(sortedPairs.size());
 
-	debug_start = _comparisons;
-	for (size_t k = 0; k < order.size(); ++k) {
-		size_t idx = order[k];
-		long small = sortedPairs[idx].small;
-		size_t right = findPosition(mainChain, sortedPairs[idx].large);
-		if (k == 0) {
-			mainChain.insert(mainChain.begin() + right, small);
-		} else {
-			binaryInsert(mainChain, small, right);
-		}
-	}
-	if (depth == 0) std::cout << "[DEBUG] Nach kleine Zahlen: " << (_comparisons-debug_start) << " Vergleiche, gesamt: " << _comparisons << std::endl;
+	if (_explain && EXPLAIN) explainAfter(sortedPairs, mainChain, order, depth);
 
-	debug_start = _comparisons;
-	if (hasStraggler) {
-		size_t smallEnd = order.size();
-		if (mainChain.empty() || straggler > mainChain.back()) {
-			std::cout << "[DEBUG] Straggler hinten: " << straggler << std::endl;
-			mainChain.push_back(straggler); // Kein Vergleich nötig
-		} else {
-			std::cout << "[DEBUG] Straggler binär: " << straggler << " in [";
-			for (size_t i = 0; i < mainChain.size(); ++i) std::cout << mainChain[i] << (i+1<mainChain.size()? ", ":"");
-			std::cout << "] bis " << smallEnd << std::endl;
-			binaryInsert(mainChain, straggler, smallEnd);
-		}
+	for (size_t i = 0; i < order.size(); ++i) {
+		long small = sortedPairs[order[i]].small;
+		size_t right = findPosition(mainChain, sortedPairs[order[i]].large);
+
+		if (i == 0)
+			mainChain.insert(mainChain.begin() + right, small);
+		else
+			binaryInsert(mainChain, small, right);
 	}
-	if (depth == 0 && hasStraggler) std::cout << "[DEBUG] Nach Straggler: " << (_comparisons-debug_start) << " Vergleiche, gesamt: " << _comparisons << std::endl;
+
+	if (hasStraggler) {
+		if (mainChain.empty() || straggler > mainChain.back())
+			mainChain.push_back(straggler);
+		else
+			binaryInsert(mainChain, straggler, order.size());
+	}
 
 	container = mainChain;
 }
@@ -87,6 +75,7 @@ void PmergeMe::binaryInsert(T &mainChain, long value, size_t right) {
 	while (left < right) {
 		size_t mid = left + (right - left) / 2;
 		_comparisons++;
+
 		if (value < mainChain[mid])
 			right = mid;
 		else

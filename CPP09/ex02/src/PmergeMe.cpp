@@ -10,7 +10,8 @@ PmergeMe::PmergeMe(char **av) : _explain(true), _comparisons(0) {
 }
 
 PmergeMe::PmergeMe(const PmergeMe &other)
-	: _vector(other._vector), _deque(other._deque), _explain(other._explain) , _comparisons(other._comparisons) {
+	: _vector(other._vector), _deque(other._deque),
+	_explain(other._explain) , _comparisons(other._comparisons) {
 	
 }
 
