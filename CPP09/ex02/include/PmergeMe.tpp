@@ -3,7 +3,6 @@
 
 #include "PmergeMe.hpp"
 
-// Ford-Johnson/Merge-Insertion Sort, garantiert ≤66 Vergleiche für 21 Elemente
 template <typename T>
 void PmergeMe::fordJohnson(T &container, int depth) {
 	if (container.size() <= 1)
@@ -19,7 +18,6 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 	}
 
 	size_t debug_start = _comparisons;
-	// 1. Paare bilden (immer nur EIN Vergleich pro Paar!)
 	for (size_t i = 0; i + 1 < container.size(); i += 2) {
 		Pair pair;
 		_comparisons++;
@@ -36,10 +34,8 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 
 	if (depth == 0) std::cout << "[DEBUG] Nach Pairing: " << (_comparisons-debug_start) << " Vergleiche, gesamt: " << _comparisons << std::endl;
 
-	// 2. Rekursiv große Elemente sortieren
 	fordJohnson(mainChain, depth + 1);
 
-	// 3. Paare den sortierten großen Elementen zuordnen
 	std::vector<Pair> sortedPairs;
 	std::vector<int> used(pairs.size(), 0);
 	for (size_t i = 0; i < mainChain.size(); i++) {
@@ -52,17 +48,14 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 		}
 	}
 
-	// 4. Jacobsthal-Reihenfolge für kleine Elemente
 	std::vector<size_t> order = generateJacobsOrder(sortedPairs.size());
 
-	// 5. Kleine Elemente einfügen
 	debug_start = _comparisons;
 	for (size_t k = 0; k < order.size(); ++k) {
 		size_t idx = order[k];
 		long small = sortedPairs[idx].small;
 		size_t right = findPosition(mainChain, sortedPairs[idx].large);
 		if (k == 0) {
-			// Das erste kleine Element ohne Vergleich exakt links vom zugehörigen large einfügen
 			mainChain.insert(mainChain.begin() + right, small);
 		} else {
 			binaryInsert(mainChain, small, right);
@@ -70,7 +63,6 @@ void PmergeMe::fordJohnson(T &container, int depth) {
 	}
 	if (depth == 0) std::cout << "[DEBUG] Nach kleine Zahlen: " << (_comparisons-debug_start) << " Vergleiche, gesamt: " << _comparisons << std::endl;
 
-	// 6. Straggler einsortieren (immer am Ende)
 	debug_start = _comparisons;
 	if (hasStraggler) {
 		size_t smallEnd = order.size();
